@@ -33,17 +33,24 @@
     gap: 2rem;
     position: relative;
     z-index: 10;
+    line-height: 1.3;
 }
 
 .form-info-container h1 {
     font-family: 'Iceberg', sans-serif;
     font-size: 3.75rem;
+    font-weight: inherit;
 }
 
 .aditional-info {
     text-align: start;
     position: relative;
     z-index: 10;
+    margin-top: 0.8rem;
+}
+
+.aditional-info p {
+    margin-bottom: 0.5rem;
 }
 
 .aditional-info a {
