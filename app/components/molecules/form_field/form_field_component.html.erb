@@ -1,0 +1,5 @@
+<div class="field-container">
+    <%= f.label name, label %>
+    <%= f.public_send("#{type}_field", name, placeholder: placeholder, class: "form-control", value: value, autocomplete: auto_complete) %>
+</div>
+  

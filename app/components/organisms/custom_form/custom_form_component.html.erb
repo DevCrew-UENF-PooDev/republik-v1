@@ -1,0 +1,21 @@
+<%= form_with url: @on_submit[:url], local: true, html: { class: "form-container" } do |f| %>
+  <h1><%= @form_name %></h1>
+  <div class="fields">
+    <% @fields.each do |field| %>
+      <%= render Molecules::FormField::FormFieldComponent.new(
+        f: f,
+        name: field[:name],
+        label: field[:label],
+        placeholder: field[:placeholder],
+        type: field[:type],
+        value: field[:value],
+        auto_complete: field[:auto_complete]
+      ) %>
+    <% end %>
+  </div>
+  <%= render Atoms::CustomButton::CustomButtonComponent.new(name: "Login") %>
+  <div class="aditional-info">
+    <p><%= @form_aditional_info[:aditional_question] %></p>
+    <%= link_to @form_aditional_info[:aditional_link_text], @form_aditional_info[:aditional_link] %>
+  </div>
+<% end %>

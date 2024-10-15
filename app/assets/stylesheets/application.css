@@ -13,3 +13,25 @@
  *= require_tree .
  *= require_self
  */
+
+:root {
+    --primary: #18191a;
+    --quaternary: #014dca;
+    --quinary: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+    height: 100%;
+    background-color: var(--primary);
+    min-width: 320px;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+    margin: 0;
+    padding: 0;
+}
