@@ -6,11 +6,17 @@
     font-family: 'Inria Sans', sans-serif;
 }
 
+.field-container.field-with-error input {
+    border-color: red;
+    border-width: 2px;
+}
+
 .field-container label {
     font-weight: bold;
 }
 
 .field-container input {
+    width: 100%;
     color: black;
     font-family: 'Inria Sans', sans-serif;
     border-radius: 0.375rem;
@@ -25,4 +31,19 @@
     opacity: 0.7;
     color: black;
     font-weight: bold;
+}
+
+.field-container .form-errors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 0.5em;
+    margin-top: -10px;
+}
+
+.field-container .form-errors p {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--quaternary);
+    opacity: 0.9;
 }

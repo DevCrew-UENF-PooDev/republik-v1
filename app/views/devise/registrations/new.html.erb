@@ -1,49 +1,20 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, autofocus: true%>
-  </div>
-
-  <div class="field">
-    <%= f.label :nome %><br />
-    <%= f.text_field :nome, autofocus: true%>
-  </div>
-
-  <div class="field">
-    <%= f.label :curso %><br />
-    <%= f.text_field :curso, autofocus: true%>
-  </div>
-
-  <div class="field">
-    <%= f.label :instituicao %><br />
-    <%= f.text_field :instituicao, autofocus: true%>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<%= render Templatee::FormWInfo::FormWInfoComponent.new(
+  fields: [
+    { name: 'nome', label: 'Nome', placeholder: 'Informe-me o seu nome', type: 'text', value: '', auto_complete: 'nome' },
+    { name: 'username', label: 'Username', placeholder: 'Informe-me o seu nickname', type: 'text', value: '', auto_complete: 'username' },
+    { name: 'email', label: 'E-mail', placeholder: 'Informe-me o seu e-mail', type: 'email', value: '', auto_complete: 'email' },
+    { name: 'instituicao', label: 'Instituição', placeholder: 'Informe-me a sua Instituição', type: 'text', value: '', auto_complete: 'instituicao' },
+    { name: 'curso', label: 'Curso', placeholder: 'Informe-me o seu curso', type: 'text', value: '', auto_complete: 'curso' },
+    { name: 'password', label: 'Senha', placeholder: 'Informe-me a sua senha', type: 'password', value: '', auto_complete: 'current-password' },
+    { name: 'password_confirmation', label: 'Confirme-me a sua senha', placeholder: 'Informe-me a sua senha novamente', type: 'password', value: '', auto_complete: 'current-password' },
+  ],
+  on_submit: { url: registration_path(resource_name) },
+  form_name: 'Cadastra-se',
+  submit_button_name: 'Inscrever-se',
+  form_aditional_info: {
+    aditional_question: 'Já possui uma conta?',
+    aditional_link: new_usuario_session_path,
+    aditional_link_text: 'Entre'
+  },
+  resource: resource,
+) %>

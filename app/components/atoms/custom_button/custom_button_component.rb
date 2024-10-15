@@ -5,4 +5,7 @@ class Atoms::CustomButton::CustomButtonComponent < ViewComponent::Base
     @name = name
     @type = type
   end
+
+  private
+  attr_reader :name, :type
 end

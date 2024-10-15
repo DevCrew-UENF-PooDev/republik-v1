@@ -1,14 +1,15 @@
 <%= render Templatee::FormWInfo::FormWInfoComponent.new(
   fields: [
-    { name: 'email', label: 'E-mail', placeholder: 'Informe-me o seu e-mail', type: 'text', value: '', auto_complete: 'email' },
+    { name: 'email', label: 'E-mail', placeholder: 'Informe-me o seu e-mail', type: 'email', value: '', auto_complete: 'email' },
     { name: 'password', label: 'Senha', placeholder: 'Informe-me a sua senha', type: 'password', value: '', auto_complete: 'current-password' },
   ],
-  on_submit: { url: usuario_session_path },
+  on_submit: { url: session_path(resource_name) },
   form_name: 'Login',
   submit_button_name: 'Login',
   form_aditional_info: {
     aditional_question: 'Não possui uma conta?',
     aditional_link: new_usuario_registration_path,
     aditional_link_text: 'Cadastra-se'
-  }
+  },
+  resource: resource,
 ) %>
