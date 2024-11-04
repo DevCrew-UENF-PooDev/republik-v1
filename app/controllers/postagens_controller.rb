@@ -5,9 +5,9 @@ class PostagensController < ApplicationController
   end
 
   def create
-    @postagem = Postagem.new(params_postagem)
-    @postagem.data_publicacao = Time.now
-    if @postagem.save
+    postagem = current_usuario.postagens.create(params_postagem)
+    postagem.data_publicacao = Time.now
+    if postagem.save
       redirect_to root_path
     end
   end

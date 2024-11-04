@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_04_190714) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_04_203223) do
   create_table "comentarios", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,6 +32,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_190714) do
     t.string "titulo"
     t.string "conteudo"
     t.datetime "data_publicacao"
+    t.integer "usuario_id", null: false
+    t.index ["usuario_id"], name: "index_postagens_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -49,4 +51,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_04_190714) do
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "postagens", "usuarios"
 end
