@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_14_035047) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_04_190714) do
   create_table "comentarios", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,7 +31,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_14_035047) do
     t.datetime "updated_at", null: false
     t.string "titulo"
     t.string "conteudo"
-    t.date "data_publicacao"
+    t.datetime "data_publicacao"
   end
 
   create_table "usuarios", force: :cascade do |t|
