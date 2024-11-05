@@ -1,6 +1,14 @@
 <div>
   <%= link_to "Criar Postagem", new_postagem_path %>
 </div>
+
+<%= render Templatee::Home::HomeTemplateComponent.new(
+  posts: @postagens,
+  communities: []
+) %>
+
+<!--
 <% @postagens.each do |postagem| %>
   <%= postagem.titulo %>
 <% end %>
+-->

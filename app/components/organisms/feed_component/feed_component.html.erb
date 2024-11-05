@@ -1,0 +1,11 @@
+<div class="feed-container">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <%= render Organisms::Post::Header::HeaderComponent.new(group_name: post[:group_name], time_posted: post[:time_posted], user_avatar: post[:user_avatar]) %>
+
+      <%= render Organisms::Post::Content::ContentComponent.new(image_url: post[:image_url], description: post[:description], tags: post[:tags]) %>
+      
+      <%= render Organisms::Post::Footer::FooterComponent.new(likes_count: post[:likes_count], comments_count: post[:comments_count], shares_count: post[:shares_count]) %>
+    </div>
+  <% end %>
+</div>

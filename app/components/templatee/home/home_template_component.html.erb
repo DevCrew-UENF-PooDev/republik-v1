@@ -1,0 +1,8 @@
+<%= stylesheet_link_tag "components/templatee/form_w_info_component" %>
+
+<div class="main-content">
+  <%= render(Organisms::CommunitySidebar::CommunitySidebarComponent.new(communities: @communities)) %>
+  <div class="feed">
+    <%= render Organisms::FeedComponent::FeedComponent.new(posts: @posts) %>
+  </div>
+</div>

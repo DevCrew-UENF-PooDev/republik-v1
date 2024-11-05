@@ -1,0 +1,18 @@
+/* app/assets/stylesheets/components/post/footer_component.css */
+.post-footer {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.post-stats {
+    font-size: 0.9em;
+    color: #555;
+}

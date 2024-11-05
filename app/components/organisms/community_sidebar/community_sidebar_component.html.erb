@@ -1,0 +1,6 @@
+<div class="community-sidebar">
+  <h2>Comunidades</h2>
+  <% @communities.each do |community| %>
+    <%= render Sidebar::CommunityItemComponent.new(name: community[:name], image_url: community[:image_url], last_activity: community[:last_activity]) %>
+  <% end %>
+</div>
