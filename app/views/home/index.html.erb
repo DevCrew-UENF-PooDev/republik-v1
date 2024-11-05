@@ -1,4 +1,6 @@
 <div>
   <%= link_to "Criar Postagem", new_postagem_path %>
 </div>
-<%= for postagem in @postagens do %>
+<% @postagens.each do |postagem| %>
+  <%= postagem.titulo %>
+<% end %>
