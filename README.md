@@ -1,24 +1,86 @@
-# README
+# Republik
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Pré-requisitos
 
-Things you may want to cover:
+Antes de começar, certifique-se de ter os seguintes itens instalados:
 
-* Ruby version
+-   [Ruby](https://www.ruby-lang.org/en/) 3.3.4+ ou superior
+-   [Rails](https://rubyonrails.org/) 7.2.1+
 
-* System dependencies
+## Inicialização do Projeto
 
-* Configuration
+### 1. Clone o repositório
 
-* Database creation
+```bash
+git clone ...
+cd ...
+```
 
-* Database initialization
+### 2. Instale as dependências do projeto
 
-* How to run the test suite
+```bash
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### 3. Configure o banco de dados
 
-* Deployment instructions
+```bash
+rails db:create
+rails db:migrate
+```
 
-* ...
+### 4. Rodar as seeds
+
+```bash
+rails db:seed
+```
+
+### 5. SQL - Consultas
+
+<details><summary>Esta consulta retorna uma lista de postagens com detalhes das postagens e informações básicas dos usuários que as criaram, ordenadas pela data de publicação de forma decrescente.</summary>
+
+```sql
+SELECT
+    postagens.id AS postagem_id,
+    postagens.created_at AS data_criacao,
+    postagens.updated_at AS data_atualizacao,
+    postagens.titulo,
+    postagens.conteudo,
+    postagens.data_publicacao,
+    usuarios.id AS usuario_id,
+    usuarios.nome AS nome_usuario
+FROM
+    postagens
+JOIN
+    usuarios ON postagens.usuario_id = usuarios.id
+ORDER BY
+    postagens.data_publicacao DESC;
+```
+
+</details>
+
+<details><summary>Esta consulta retorna informações básicas do usuário, incluindo a foto e o nome, para serem utilizadas no header.</summary>
+
+```sql
+SELECT
+    usuarios.id AS usuario_id,
+    usuarios.nome AS nome_usuario
+FROM
+    usuarios;
+```
+
+</details>
+
+<details><summary>Esta consulta retorna uma lista de comunidades com detalhes básicos, como nome, descrição e data de criação.</summary>
+
+```sql
+SELECT
+    comunidades.id AS comunidade_id,
+    comunidades.nome AS nome_comunidade,
+    comunidades.descricao AS descricao_comunidade,
+    comunidades.data_criacao AS data_criacao_comunidade
+FROM
+    comunidades;
+```
+
+</details>
