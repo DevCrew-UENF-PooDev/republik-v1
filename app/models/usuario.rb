@@ -4,4 +4,9 @@ class Usuario < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :postagens
+  has_many :comentarios
+  has_many :comunidades, foreign_key: :administrador_id
+  has_many :reacoes
+  has_many :seguindo, class_name: "Seguindo", foreign_key: "usuario_id"
+  has_many :seguidores, class_name: "Seguindo", foreign_key: "seguidor_id"
 end

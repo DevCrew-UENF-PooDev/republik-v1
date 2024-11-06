@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_014002) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_06_015346) do
   create_table "comentarios", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_014002) do
     t.string "conteudo"
     t.datetime "data_publicacao"
     t.integer "usuario_id", null: false
-    t.integer "comunidade_id", null: false
+    t.integer "comunidade_id"
     t.index ["comunidade_id"], name: "index_postagens_on_comunidade_id"
     t.index ["usuario_id"], name: "index_postagens_on_usuario_id"
   end
