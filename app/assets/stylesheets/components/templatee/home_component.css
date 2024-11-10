@@ -1,0 +1,83 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    flex-grow: 1;
+  }
+  
+  /* Títulos */
+  .sidebar h2 {
+    font-size: 1.5em;
+    border-bottom: 1px solid #555;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Seções de amigos e comunidades */
+  .sidebar-section {
+    margin-bottom: 20px;
+  }
+  
+  /* Amigos e Comunidades */
+  .friend, .community {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+  
+  /* Informações do amigo */
+  .friend-info, .community-info {
+    flex-grow: 1;
+  }
+  
+  .friend-header, .community-info .name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .name {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  
+  .date, .last-activity {
+    font-size: 0.9em;
+    color: #bbb;
+  }
+  
+  .status {
+    font-size: 0.9em;
+    color: #ccc;
+  }
+  
+  /* Indicador de status online */
+  .status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+  
+  .status-indicator.online {
+    background-color: #4CAF50;
+  }
+  

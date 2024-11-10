@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag "components/header/navbar" %>
+<div class="navbar">
+  <!-- Logotipo -->
+  <div class="navbar-logo">
+    <%= image_tag("icons/Logo.svg", :alt => "Logo Republik", :class => "logo") %>
+  </div>
+
+  <!-- Ícones de Navegação -->
+  <div class="navbar-icons">
+    <a href="#" class="icon-link">
+      <%= image_tag("icons/Home.svg", :alt => "Home", :class => "icon active") %>
+    </a>
+    <%= link_to new_postagem_path, class: "icon-link" do %>
+      <%= image_tag("icons/AddIcon.svg", :alt => "Criar Postagem", :class => "icon") %>
+    <% end %>
+    <a href="#" class="icon-link">
+      <%= image_tag("icons/MessageIcon.svg", :alt => "Messages", :class => "icon") %>
+      <span class="notification-badge">3</span>
+    </a>
+    <a href="#" class="icon-link">
+      <%= image_tag("icons/FriendsIcon.svg", :alt => "Friends", :class => "icon") %>
+    </a>
+  </div>
+
+  <!-- Avatar do Usuário -->
+  <div class="navbar-user">
+    <a href="#">
+      <%= image_tag("icons/NotificationIcon.svg", :alt => "Notification Icon", :class => "icon") %>
+      <span class="notification-badge">1</span>
+    </a>
+    <a href="#">
+      <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "User Avatar", :class => "avatar") %>
+    </a>
+  </div>
+</div>

@@ -1,8 +1,56 @@
-<%= stylesheet_link_tag "components/templatee/form_w_info_component" %>
+<%= stylesheet_link_tag "components/templatee/home_component" %>
 
 <div class="main-content">
-  <%= render(Organisms::CommunitySidebar::CommunitySidebarComponent.new(communities: @communities)) %>
-  <div class="feed">
-    <%= render Organisms::FeedComponent::FeedComponent.new(posts: @posts) %>
+  <%= render(Organisms::Header::NavbarComponent.new()) %>
+  <div class="sidebar">
+    <h2>Amigos</h2>
+    <div class="sidebar-section">
+      <!-- Amigo 1 -->
+      <div class="friend">
+        <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Rivera Escriva", :class => "avatar") %>
+        <div class="friend-info">
+          <div class="friend-header">
+            <span class="name">Rivera Escriva</span>
+            <span class="date">01/09/2024</span>
+          </div>
+          <p class="status">¿Terminó el trabajo?</p>
+        </div>
+        <span class="status-indicator online"></span>
+      </div>
+  
+      <!-- Amigo 2 -->
+      <div class="friend">
+        <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %>
+        <div class="friend-info">
+          <div class="friend-header">
+            <span class="name">Enzo Alberix</span>
+            <span class="date">20/08/2024</span>
+          </div>
+          <p class="status">Assistiu o último ep de OP?</p>
+        </div>
+        <span class="status-indicator online"></span>
+      </div>
+    </div>
+  
+    <h2>Comunidades</h2>
+    <div class="sidebar-section">
+      <!-- Comunidade 1 -->
+      <div class="community">
+        <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Logo Computação Revolution", :class => "avatar") %>
+        <div class="community-info">
+          <span class="name">Computação Revolution</span>
+          <p class="last-activity">Última atividade há 8min</p>
+        </div>
+      </div>
+  
+      <!-- Comunidade 2 -->
+      <div class="community">
+        <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Logo Integração Uenf", :class => "avatar") %>
+        <div class="community-info">
+          <span class="name">Integração Uenf</span>
+          <p class="last-activity">Última atividade há 30min</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
