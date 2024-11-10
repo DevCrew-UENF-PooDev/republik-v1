@@ -28,8 +28,24 @@
       <%= image_tag("icons/NotificationIcon.svg", :alt => "Notification Icon", :class => "icon") %>
       <span class="notification-badge">1</span>
     </a>
-    <a href="#">
+    <div id="avatar-button" class="avatar-container">
       <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "User Avatar", :class => "avatar") %>
-    </a>
+    </div>
+    <!-- Menu Dropdown -->
+    <div id="dropdown-menu" class="dropdown-menu hidden">
+      <p>Olá, Marcos Viní...</p>
+      <a href="#" class="dropdown-item">
+        <%= image_tag("icons/PersonIcon.svg", :alt => "Meu Perfil", :class => "dropdown-icon") %>
+        Meu Perfil
+      </a>
+      <a href="#" class="dropdown-item">
+        <%= image_tag("icons/SettingsIcon.svg", :alt => "Configurações", :class => "dropdown-icon") %>
+        Configurações
+      </a>
+      <%= link_to destroy_usuario_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+        <%= image_tag("icons/LogoutIcon.svg", :alt => "Sair", :class => "dropdown-icon") %>
+        Sair
+      <% end %>
+    </div>
   </div>
 </div>
