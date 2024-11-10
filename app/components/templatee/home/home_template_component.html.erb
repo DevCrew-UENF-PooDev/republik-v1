@@ -2,55 +2,93 @@
 
 <div class="main-content">
   <%= render(Organisms::Header::NavbarComponent.new()) %>
-  <div class="sidebar">
-    <h2>Amigos</h2>
-    <div class="sidebar-section">
-      <!-- Amigo 1 -->
-      <div class="friend">
-        <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Rivera Escriva", :class => "avatar") %>
-        <div class="friend-info">
-          <div class="friend-header">
-            <span class="name">Rivera Escriva</span>
-            <span class="date">01/09/2024</span>
+  <section>
+    <div class="sidebar">
+      <h2>Amigos</h2>
+      <div class="sidebar-section">
+        <!-- Amigo 1 -->
+        <div class="friend">
+          <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Rivera Escriva", :class => "avatar") %>
+          <div class="friend-info">
+            <div class="friend-header">
+              <span class="name">Rivera Escriva</span>
+              <span class="date">01/09/2024</span>
+            </div>
+            <p class="status">¿Terminó el trabajo?</p>
           </div>
-          <p class="status">¿Terminó el trabajo?</p>
+          <span class="status-indicator online"></span>
         </div>
-        <span class="status-indicator online"></span>
+    
+        <!-- Amigo 2 -->
+        <div class="friend">
+          <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %>
+          <div class="friend-info">
+            <div class="friend-header">
+              <span class="name">Enzo Alberix</span>
+              <span class="date">20/08/2024</span>
+            </div>
+            <p class="status">Assistiu o último ep de OP?</p>
+          </div>
+          <span class="status-indicator online"></span>
+        </div>
       </div>
-  
-      <!-- Amigo 2 -->
-      <div class="friend">
-        <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %>
-        <div class="friend-info">
-          <div class="friend-header">
-            <span class="name">Enzo Alberix</span>
-            <span class="date">20/08/2024</span>
+    
+      <h2>Comunidades</h2>
+      <div class="sidebar-section">
+        <!-- Comunidade 1 -->
+        <div class="community">
+          <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Logo Computação Revolution", :class => "avatar") %>
+          <div class="community-info">
+            <span class="name">Computação Revolution</span>
+            <p class="last-activity">Última atividade há 8min</p>
           </div>
-          <p class="status">Assistiu o último ep de OP?</p>
         </div>
-        <span class="status-indicator online"></span>
+    
+        <!-- Comunidade 2 -->
+        <div class="community">
+          <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Logo Integração Uenf", :class => "avatar") %>
+          <div class="community-info">
+            <span class="name">Integração Uenf</span>
+            <p class="last-activity">Última atividade há 30min</p>
+          </div>
+        </div>
       </div>
     </div>
-  
-    <h2>Comunidades</h2>
-    <div class="sidebar-section">
-      <!-- Comunidade 1 -->
-      <div class="community">
-        <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Logo Computação Revolution", :class => "avatar") %>
-        <div class="community-info">
-          <span class="name">Computação Revolution</span>
-          <p class="last-activity">Última atividade há 8min</p>
-        </div>
-      </div>
-  
-      <!-- Comunidade 2 -->
-      <div class="community">
-        <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Logo Integração Uenf", :class => "avatar") %>
-        <div class="community-info">
-          <span class="name">Integração Uenf</span>
-          <p class="last-activity">Última atividade há 30min</p>
-        </div>
-      </div>
+    <!-- Separar depois em Post -->
+    <div class="posts-container">
+      <% @posts.each do |postagem| %>
+        <div class="post-card">
+          <!-- Cabeçalho -->
+          <div class="post-header">
+            <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Icone Comunidade", :class => "community-icon") %>
+            <div class="post-info">
+              <div class="community-name"><%= postagem.comunidade.try(:nome) || "Sem comunidade" %></div>
+              <div class="user-name"><%= postagem.usuario.nome %></div>
+            </div>
+            <div class="post-options">
+              <span class="icon-options">⋮</span>
+            </div>
+          </div>
+        
+          <!-- Conteúdo da Postagem -->
+          <div class="post-content">
+            <h1><%= postagem.titulo %></h1>
+            <p><%= postagem.conteudo %></p>
+          </div>
+        
+          <!-- Rodapé -->
+          <div class="post-footer">
+            <div class="post-reactions">
+              <button class="reaction-button">👍 Reações</button>
+              <button class="comment-button">💬 Comentar</button>
+            </div>
+            <div class="post-stats">
+              <span class="views-count">180</span> Reações • 
+              <span class="comments-count">30,4k comentários</span>
+            </div>
+          </div>
+        </div>      
+      <% end %>
     </div>
-  </div>
+  </section>
 </div>
