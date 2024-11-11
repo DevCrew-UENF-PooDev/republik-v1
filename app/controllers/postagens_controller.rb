@@ -1,5 +1,4 @@
 class PostagensController < ApplicationController
-  before_action :usuario_signed_in?
   def new
     @postagem = Postagem.new
   end

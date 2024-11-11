@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_021340) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_11_200409) do
   create_table "comentarios", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,6 +30,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_021340) do
     t.date "data_criacao"
     t.integer "administrador_id"
     t.index ["administrador_id"], name: "index_comunidades_on_administrador_id"
+  end
+
+  create_table "membros", force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.integer "comunidade_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comunidade_id"], name: "index_membros_on_comunidade_id"
+    t.index ["usuario_id"], name: "index_membros_on_usuario_id"
   end
 
   create_table "postagens", force: :cascade do |t|
@@ -80,6 +89,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_021340) do
   add_foreign_key "comentarios", "postagens"
   add_foreign_key "comentarios", "usuarios"
   add_foreign_key "comunidades", "usuarios", column: "administrador_id"
+  add_foreign_key "membros", "comunidades"
+  add_foreign_key "membros", "usuarios"
   add_foreign_key "postagens", "comunidades"
   add_foreign_key "postagens", "usuarios"
   add_foreign_key "reacaos", "postagens"

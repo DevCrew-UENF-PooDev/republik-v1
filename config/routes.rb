@@ -13,4 +13,8 @@ Rails.application.routes.draw do
    # Defines the root path route ("/")
    root "home#index"
    resources :postagens
+   resources :comunidades
+   resources :postagens do
+    resources :comentarios, only: [:create]
+   end  
 end
