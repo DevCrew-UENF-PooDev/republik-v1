@@ -1,4 +1,12 @@
 class ComunidadesController < ApplicationController
+
+  def index
+    if params[:query].present?
+      @comunidades = Comunidade.where("nome LIKE ?", "%#{params[:query]}%")
+    else
+      @comunidades = Comunidade.all
+    end
+  end
   def new
     @comunidade = Comunidade.new
   end
@@ -7,7 +15,7 @@ class ComunidadesController < ApplicationController
     @comunidade = current_usuario.comunidades_criadas.build(params_comunidade)
     @comunidade.data_criacao = Time.now
     @comunidade.usuarios << current_usuario
-    
+
     if @comunidade.save
       flash[:notice] = "Comunidade criada com sucesso!"
       redirect_to root_path
@@ -16,7 +24,7 @@ class ComunidadesController < ApplicationController
       render :new
     end
   end
-  
+
 
   private
 

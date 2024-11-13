@@ -34,18 +34,41 @@
       </div>
 
       <h2>Comunidades</h2>
-      <div class="sidebar-section">
+  <div class="comunidade-search">
+    <%= form_with(url: comunidades_path, method: :get, local: true, class: "search-form") do |form| %>
+      <div class="form-group">
+        <%= form.label :query, "Buscar Comunidades", class: "sr-only" %>
+        <%= form.text_field :query, class: "form-control", placeholder: "Buscar comunidades..." %>
+      </div>
+      <div class="form-group">
+        <%= form.submit "Buscar", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @communities.present? %>
+    <div class="sidebar-section">
+      <% if @communities.any? %>
         <% @communities.each do |comunidade| %>
           <div class="community">
-            <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Logo #{comunidade.nome}", :class => "avatar") %>
+            <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", alt: "Logo #{comunidade.nome}", class: "avatar") %>
             <div class="community-info">
               <span class="name"><%= comunidade.nome %></span>
               <p class="last-activity">Última atividade há <%= time_ago_in_words(comunidade.updated_at) %></p>
+              <% if @comunidades_participadas.include?(comunidade.id) %>
+                <p class="membership-status">Você já é membro desta comunidade</p>
+              <% else %>
+                <%= button_to 'Participar', comunidade_membros_path(comunidade), method: :post, class: 'btn btn-success' %>
+              <% end %>
             </div>
           </div>
         <% end %>
-      </div>
+      <% else %>
+        <p>Nenhuma comunidade encontrada.</p>
+      <% end %>
     </div>
+  <% end %>
+</div>
 
     <!-- Separar depois em Post -->
     <div class="posts-container">
