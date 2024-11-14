@@ -96,7 +96,7 @@
           <div class="post-footer">
             <div class="post-reactions">
               <button class="reaction-button">👍 Reações</button>
-              <button class="comment-button">💬 Comentar</button>
+              <button class="comment-button" data-post-id="<%= postagem.id %>">💬 Comentar</button>
             </div>
             <div class="post-stats">
               <span class="views-count">180</span> Reações • 
@@ -107,7 +107,7 @@
           <!-- Comentários -->
           <div class="post-comments">
             <%= form_with(model: [postagem, Comentario.new], local: true) do |form| %>
-              <div class="form-group">
+              <div class="form-group comment-form" data-post-id="<%= postagem.id %>" style="display: none;">
                 <%= form.text_area :conteudo, class: "form-control", placeholder: "Adicionar um comentário" %>
                 <%= helpers.inline_svg 'icons/send.svg', alt: "Submit Message", class: "logo" %>
                 <%= form.submit "Submit", :type => :image, :src => image_path("icons/send.svg") %>

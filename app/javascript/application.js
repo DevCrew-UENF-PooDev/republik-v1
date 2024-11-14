@@ -8,6 +8,27 @@ function isAuthenticated()
     return path !== "/usuarios/sign_in" && path !== "/usuarios/sign_up"
 }
 
+function isInHome() 
+{
+    return window.location.pathname === "/"
+}
+
+function toggleComment()
+{
+    if(!isInHome()) return;
+
+    document.querySelectorAll(".comment-button").forEach(function(button) {
+        button.addEventListener("click", function() {
+          const postId = this.getAttribute("data-post-id");
+          const form = document.querySelector(`.comment-form[data-post-id="${postId}"]`);
+          if (form) {
+            if (form.style.display === "none" || form.style.display === "") form.style.display = "block";
+            else form.style.display = "none";
+          }
+        });
+    });
+}
+
 function toggleDropdown() 
 {
     if(!isAuthenticated()) return;
@@ -26,3 +47,4 @@ function toggleDropdown()
 }
 
 document.addEventListener('turbo:load', toggleDropdown);
+document.addEventListener('turbo:load', toggleComment);
