@@ -106,24 +106,24 @@
 
           <!-- Comentários -->
           <div class="post-comments">
-            <h4>Comentários:</h4>
-            <% postagem.comentarios.each do |comentario| %>
-              <div class="comment">
-                <strong><%= comentario.usuario.username %>:</strong>
-                <p><%= comentario.conteudo %></p>
+            <%= form_with(model: [postagem, Comentario.new], local: true) do |form| %>
+              <div class="form-group">
+                <%= form.text_area :conteudo, class: "form-control", placeholder: "Adicionar um comentário" %>
+                <%= helpers.inline_svg 'icons/send.svg', alt: "Submit Message", class: "logo" %>
+                <%= form.submit "Submit", :type => :image, :src => image_path("icons/send.svg") %>
               </div>
             <% end %>
-
-              <h4>Adicionar um comentário:</h4>
-              <%= form_with(model: [postagem, Comentario.new], local: true) do |form| %>
-                <div class="form-group">
-                  <%= form.label :conteudo, "Seu comentário" %>
-                  <%= form.text_area :conteudo, class: "form-control" %>
+            <% postagem.comentarios.each do |comentario| %>
+              <div class="comment">
+                <div class="user-comment-info">
+                  <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %>
+                  <strong><%= comentario.usuario.username %></strong>
+                  <p class="last-activity">• Realizado há <%= time_ago_in_words(comentario.updated_at) %> •</p>
                 </div>
-                <div class="form-group">
-                  <%= form.submit "Comentar", class: "btn btn-primary" %>
-                </div>
-              <% end %>
+                <p class="comment-content"><%= comentario.conteudo %></p>
+                <hr>
+              </div>
+            <% end %>
           </div>
         </div>      
       <% end %>

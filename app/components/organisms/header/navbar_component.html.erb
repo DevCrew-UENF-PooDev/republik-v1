@@ -2,33 +2,34 @@
 <div class="navbar">
   <!-- Logotipo -->
   <div class="navbar-logo">
-    <%= image_tag("icons/Logo.svg", :alt => "Logo Republik", :class => "logo") %>
+    <%= helpers.inline_svg 'icons/Logo.svg', alt: "Logo Republik", class: "logo" %>
   </div>
 
   <!-- Ícones de Navegação -->
   <div class="navbar-icons">
     <a href="#" class="icon-link">
-      <%= image_tag("icons/Home.svg", :alt => "Home", :class => "icon active") %>
+      <%= helpers.inline_svg 'icons/Home.svg', alt: "Home Icon", class: "icon active" %>
     </a>
     <%= link_to new_postagem_path, class: "icon-link" do %>
-      <%= image_tag("icons/AddIcon.svg", :alt => "Criar Postagem", :class => "icon") %>
+      <%= helpers.inline_svg 'icons/AddIcon.svg', alt: "Criar Postagem", class: "icon" %>
     <% end %>
+
     <%= link_to new_comunidade_path, class: "icon-link" do %>
-      <%= image_tag("icons/AddIcon.svg", :alt => "Criar Comunidade", :class => "icon") %>
+      <%= helpers.inline_svg 'icons/AddIcon.svg', alt: "Criar Comunidade", class: "icon" %>
     <% end %>
     <a href="#" class="icon-link">
-      <%= image_tag("icons/MessageIcon.svg", :alt => "Messages", :class => "icon") %>
+      <%= helpers.inline_svg 'icons/MessageIcon.svg', alt: "Messages", class: "icon" %>
       <span class="notification-badge">3</span>
     </a>
     <a href="#" class="icon-link">
-      <%= image_tag("icons/FriendsIcon.svg", :alt => "Friends", :class => "icon") %>
+      <%= helpers.inline_svg 'icons/FriendsIcon.svg', alt: "Friends", class: "icon" %>
     </a>
   </div>
 
   <!-- Avatar do Usuário -->
   <div class="navbar-user">
     <a href="#">
-      <%= image_tag("icons/NotificationIcon.svg", :alt => "Notification Icon", :class => "icon") %>
+      <%= helpers.inline_svg 'icons/NotificationIcon.svg', alt: "Notification Icon", class: "icon" %>
       <span class="notification-badge">1</span>
     </a>
     <div id="avatar-button" class="avatar-container">
@@ -36,17 +37,17 @@
     </div>
     <!-- Menu Dropdown -->
     <div id="dropdown-menu" class="dropdown-menu hidden">
-      <p>Olá, Marcos Viní...</p>
+      <p>Olá, <%= helpers.current_usuario.nome %></p>
       <a href="#" class="dropdown-item">
-        <%= image_tag("icons/PersonIcon.svg", :alt => "Meu Perfil", :class => "dropdown-icon") %>
+        <%= helpers.inline_svg 'icons/PersonIcon.svg', alt: "Meu Perfil", class: "dropdown-icon" %>
         Meu Perfil
       </a>
       <a href="#" class="dropdown-item">
-        <%= image_tag("icons/SettingsIcon.svg", :alt => "Configurações", :class => "dropdown-icon") %>
+        <%= helpers.inline_svg 'icons/SettingsIcon.svg', alt: "Configurações", class: "dropdown-icon" %>
         Configurações
       </a>
       <%= link_to destroy_usuario_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
-        <%= image_tag("icons/LogoutIcon.svg", :alt => "Sair", :class => "dropdown-icon") %>
+        <%= helpers.inline_svg 'icons/LogoutIcon.svg', alt: "Sair", class: "dropdown-icon" %>
         Sair
       <% end %>
     </div>

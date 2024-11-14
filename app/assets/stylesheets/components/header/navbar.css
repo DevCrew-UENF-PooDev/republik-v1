@@ -93,6 +93,9 @@
   .dropdown-menu p {
     font-weight: bold;
     margin: 0 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .dropdown-item {

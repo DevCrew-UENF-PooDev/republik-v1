@@ -40,6 +40,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    position: relative;
   }
   
   .avatar {
@@ -77,10 +78,13 @@
   
   /* Indicador de status online */
   .status-indicator {
-    width: 10px;
-    height: 10px;
+    position: absolute;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    margin-left: 10px;
+    left: 18%;
+    top: 18%;
+    border: 1px solid black;
   }
   
   .status-indicator.online {
@@ -95,6 +99,9 @@
   flex-grow: 1;
   gap: 2em;
   margin-right: 1em;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* Estilos do Card da Postagem */
@@ -190,4 +197,63 @@
 .post-stats {
   font-size: 14px;
   color: #888;
+}
+
+.form-group {
+  position: relative;
+  margin-top: 1em;
+}
+
+.post-comments textarea {
+  min-width: 100%;
+  min-height: 60px;
+  max-height: 100px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid white;
+  outline: none;
+  color: white;
+  resize: vertical;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.post-comments input, .post-comments svg {
+  position: absolute;
+  width: 24px;
+  height: auto;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.post-comments svg {
+  pointer-events: none;
+}
+
+.post-comments input {
+  opacity: 0;
+}
+
+.comment .comment-content {
+  padding: 0 1em;
+  border-bottom: 1px solid #555;
+  padding-bottom: 8px;
+}
+
+.comment .user-comment-info {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 1em;
+}
+
+.comment .user-comment-info .avatar {
+  width: 32px;
+  margin-right: 0px;
+}
+
+.comment .user-comment-info .last-activity {
+  color: #E07400;
 }
