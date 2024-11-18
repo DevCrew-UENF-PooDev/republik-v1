@@ -10,6 +10,6 @@ class MembrosController < ApplicationController
     else
       flash[:alert] = "Não foi possível participar da comunidade."
     end
-    redirect_to home_path # Ou a página adequada na sua aplicação
+    redirect_to home_path
   end
 end

@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 1em;
   height: 100vh;
+  min-width: 550px;
 }
 
 .main-content section {
@@ -10,17 +11,20 @@
   flex-grow: 1;
   gap: 1em;
   height: 100%;
+  margin-top: 5em;
 }
 
 /* Sidebar */
 .sidebar {
-    width: 300px;
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    border-radius: 10px;
-  }
+  position: fixed;
+  height: calc(100% - 5em);
+  width: 300px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+}
   
   /* Títulos */
   .sidebar h2 {
@@ -94,14 +98,12 @@
 /* Post */
 
 .posts-container {
+  margin-left: calc(300px + 1em);
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   gap: 2em;
   margin-right: 1em;
-  overflow: auto;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
 /* Estilos do Card da Postagem */

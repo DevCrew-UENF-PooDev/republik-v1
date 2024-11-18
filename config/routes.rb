@@ -16,6 +16,7 @@ Rails.application.routes.draw do
    resources :comunidades
    resources :postagens do
     resources :comentarios
+    resources :reacoes
    end
    resources :comunidades do
     resources :membros, only: [ :create ]

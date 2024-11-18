@@ -89,18 +89,19 @@
           <!-- Conteúdo da Postagem -->
           <div class="post-content">
             <h1><%= postagem.titulo %></h1>
-            <p><%= postagem.conteudo %></p>
+            <p><%= postagem.resumo %></p>
           </div>
 
           <!-- Rodapé -->
           <div class="post-footer">
             <div class="post-reactions">
-              <button class="reaction-button">👍 Reações</button>
+              <%= button_to '👍', postagem_reacoes_path(postagem_id: postagem.id, tipo: 'like'), remote: true, method: :post, class: "reaction-button" %>
+              <!-- <button class="reaction-button">👍 Reações</button> -->
               <button class="comment-button" data-post-id="<%= postagem.id %>">💬 Comentar</button>
             </div>
             <div class="post-stats">
-              <span class="views-count">180</span> Reações • 
-              <span class="comments-count"><%= postagem.comentarios.count %> comentários</span>
+              <span class="views-count"><%= postagem.total_reacoes %></span> Reações • 
+              <span class="comments-count"><%= postagem.total_comentarios %> comentários</span>
             </div>
           </div>
 
@@ -117,7 +118,7 @@
               <div class="comment">
                 <div class="user-comment-info">
                   <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %>
-                  <strong><%= comentario.usuario.username %></strong>
+                  <strong><%= comentario.nome_autor %></strong>
                   <p class="last-activity">• Realizado há <%= time_ago_in_words(comentario.updated_at) %> •</p>
                 </div>
                 <p class="comment-content"><%= comentario.conteudo %></p>
