@@ -1,12 +1,32 @@
 class ComunidadesController < ApplicationController
-
   def index
-    if params[:query].present?
-      @comunidades = Comunidade.where("nome LIKE ?", "%#{params[:query]}%")
-    else
-      @comunidades = Comunidade.all
+    @comunidades = Comunidade.where("nome LIKE ?", "%#{params[:query]}%") if params[:query].present?
+    @comunidades ||= Comunidade.all
+
+    respond_to do |format|
+      format.html # Renderiza a página completa
+      format.turbo_stream # Renderiza apenas o Turbo Frame
     end
   end
+
+  def join
+    @comunidade = Comunidade.find(params[:id])
+
+    if current_usuario.comunidades.include?(@comunidade)
+      current_usuario.comunidades.delete(@comunidade)
+      @action = :leave
+    else
+      current_usuario.comunidades << @comunidade
+      @action = :join
+    end
+
+    respond_to do |format|
+      format.html { redirect_to root_path, notice: "Sua participação foi atualizada." }
+      format.turbo_stream
+    end
+  end
+
+
   def new
     @comunidade = Comunidade.new
   end

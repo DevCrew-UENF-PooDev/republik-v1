@@ -2,11 +2,6 @@ class Comentario < ApplicationRecord
   belongs_to :usuario
   belongs_to :postagem
 
-  # Construtor
-  def initialize(attributes = {})
-    super
-  end
-
   def autor?(usuario)
     self.usuario == usuario
   end

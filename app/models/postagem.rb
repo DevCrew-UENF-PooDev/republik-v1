@@ -6,19 +6,13 @@ class Postagem < ApplicationRecord
 
   validate :usuario_deve_participar_da_comunidade, if: -> { comunidade.present? }
 
-  # Construtor
-  # def initialize(attributes = {})
-  #   super
-  # end
-  def initialize(attributes = {})
-    super()
-    @titulo = attributes[:titulo]
-    @conteudo = attributes[:conteudo]
-  end
-
   # Funcoes
   def resumo
     "#{self.conteudo.truncate(500)}"
+  end
+
+  def usuario_reagiu?(usuario)
+    self.reacoes.exists?(usuario: usuario)
   end
 
   def total_comentarios

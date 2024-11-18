@@ -10,15 +10,17 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-   # Defines the root path route ("/")
-   root "home#index"
-   resources :postagens
-   resources :comunidades
-   resources :postagens do
+  # Defines the root path route ("/")
+  root "home#index"
+  resources :postagens
+  resources :comunidades
+  resources :postagens do
     resources :comentarios
     resources :reacoes
-   end
-   resources :comunidades do
-    resources :membros, only: [ :create ]
+  end
+  resources :comunidades do
+    member do
+      post :join
+    end
   end
 end
