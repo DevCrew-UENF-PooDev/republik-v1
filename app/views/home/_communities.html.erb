@@ -1,0 +1,22 @@
+<div id="communities_frame">
+    <% if communities.present? %>
+      <% communities.each do |comunidade| %>
+        <div class="community" id="community-<%= comunidade.id %>">
+          <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", alt: "Logo #{comunidade.nome}", class: "avatar") %>
+          <div class="community-info">
+            <span class="name"><%= comunidade.nome %></span>
+            <p class="last-activity">Última atividade há <%= time_ago_in_words(comunidade.updated_at) %></p>
+            <% if comunidades_participadas.include?(comunidade.id) %>
+              <p class="membership-status">Você já é membro desta comunidade</p>
+              <%= button_to 'Sair', join_comunidade_path(comunidade), method: :post, remote: true, class: 'btn btn-danger', data: { turbo_stream: true } %>
+            <% else %>
+              <%= button_to 'Participar', join_comunidade_path(comunidade), method: :post, remote: true, class: 'btn btn-success', data: { turbo_stream: true } %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+    <% else %>
+      <p>Nenhuma comunidade encontrada.</p>
+    <% end %>
+</div>
+  

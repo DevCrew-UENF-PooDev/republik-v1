@@ -35,7 +35,7 @@
 
       <h2>Comunidades</h2>
       <div class="comunidade-search">
-        <%= form_with(url: root_path, method: :get, class: "search-form", data: { turbo_frame: "communities_frame" }) do |form| %>
+        <%= form_with(url: search_community_path, method: :get, remote: true, class: "search-form", data: { turbo_stream: true }) do |form| %>
           <div class="form-group">
             <%= form.label :query, "Buscar Comunidades", class: "sr-only" %>
             <%= form.text_field :query, class: "form-control", placeholder: "Buscar comunidades..." %>
@@ -46,29 +46,7 @@
         <% end %>
       </div>
 
-      <div>
-        <%= helpers.turbo_frame_tag "communities_frame" do %>
-          <% if @communities.present? %>
-            <% @communities.each do |comunidade| %>
-            <div class="community" id="community-<%= comunidade.id %>">
-              <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", alt: "Logo #{comunidade.nome}", class: "avatar") %>
-              <div class="community-info">
-                <span class="name"><%= comunidade.nome %></span>
-                <p class="last-activity">Última atividade há <%= time_ago_in_words(comunidade.updated_at) %></p>
-                <% if @comunidades_participadas.include?(comunidade.id) %>
-                  <p class="membership-status">Você já é membro desta comunidade</p>
-                  <%= button_to 'Sair', join_comunidade_path(comunidade), method: :post, remote: true, class: 'btn btn-danger', data: { turbo_stream: true } %>
-                <% else %>
-                  <%= button_to 'Participar', join_comunidade_path(comunidade), method: :post, remote: true, class: 'btn btn-success', data: { turbo_stream: true } %>
-                <% end %>
-              </div>
-            </div>
-            <% end %>
-          <% else %>
-            <p>Nenhuma comunidade encontrada.</p>
-          <% end %>
-        <% end %>
-      </div>
+      <%= render partial: "home/communities", locals: { communities: @communities, comunidades_participadas: @comunidades_participadas } %>
     </div>
 
     <!-- Separar depois em Post -->

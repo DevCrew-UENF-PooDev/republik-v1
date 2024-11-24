@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+  get "search_community", to: "home#search_community"
   resources :postagens
   resources :comunidades
   resources :postagens do

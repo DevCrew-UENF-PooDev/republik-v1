@@ -1,0 +1,6 @@
+<turbo-stream action="replace" target="communities_frame">
+  <template>
+    <%= render partial: "home/communities", formats: [:html],
+      locals: { communities: @communities, comunidades_participadas: @comunidades_participadas } %>
+  </template>
+</turbo-stream>
