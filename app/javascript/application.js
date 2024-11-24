@@ -46,5 +46,23 @@ function toggleDropdown()
     });
 }
 
+function searchCommunityRequestWDebounce()
+{
+    if(!isInHome) return;
+    const searchField = document.getElementById("search-query");
+    const form = document.getElementById("community-search-form");
+  
+    let debounceTimeout;
+  
+    searchField.addEventListener("input", () => {
+      clearTimeout(debounceTimeout);
+  
+      debounceTimeout = setTimeout(() => {
+        form.requestSubmit();
+      }, 500);
+    });
+}
+
 document.addEventListener('turbo:load', toggleDropdown);
 document.addEventListener('turbo:load', toggleComment);
+document.addEventListener('turbo:load', searchCommunityRequestWDebounce);

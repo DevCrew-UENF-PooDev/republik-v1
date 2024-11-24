@@ -25,6 +25,8 @@
   font-family: Arial, sans-serif;
   border-radius: 10px;
   overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
   
   /* Títulos */
@@ -202,9 +204,21 @@
   color: #888;
 }
 
-.form-group {
-  position: relative;
-  margin-top: 1em;
+
+.form-control {
+  min-width: 100%;
+  min-height: 30px;
+  max-height: 100px;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 1px solid white;
+  outline: none;
+  color: white;
+}
+
+.search-form {
+  margin-bottom: 20px;
 }
 
 .post-comments textarea {

@@ -4,12 +4,11 @@
       <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", alt: "Logo #{@comunidade.nome}", class: "avatar") %>
       <div class="community-info">
         <span class="name"><%= @comunidade.nome %></span>
-        <p class="last-activity">Última atividade há <%= time_ago_in_words(@comunidade.updated_at) %></p>
+        <p class="last-activity"><%= @comunidade.ultima_atividade %></p>
         <% if @action == :join %>
-            <p class="membership-status">Você já é membro desta comunidade</p>
-            <%= button_to 'Sair', join_comunidade_path(@comunidade), method: :post, remote: true, class: 'btn btn-danger', data: { turbo_stream: true } %>
+          <%= button_to 'Sair', join_comunidade_path(@comunidade), method: :post, remote: true, class: 'btn btn-danger', data: { turbo_stream: true } %>
         <% else %>
-            <%= button_to 'Participar', join_comunidade_path(@comunidade), method: :post, remote: true, class: 'btn btn-success', data: { turbo_stream: true } %>
+          <%= button_to 'Participar', join_comunidade_path(@comunidade), method: :post, remote: true, class: 'btn btn-success', data: { turbo_stream: true } %>
         <% end %>
       </div>
     </div>
