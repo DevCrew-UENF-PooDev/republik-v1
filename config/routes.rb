@@ -24,4 +24,6 @@ Rails.application.routes.draw do
       post :join
     end
   end
+  get "social_community_post/new", to: "social_community_post#new", as: :new_social_content
+  post "social_community_post/create", to: "social_community_post#create", as: :create_social_content
 end

@@ -7,15 +7,13 @@
 
   <!-- Ícones de Navegação -->
   <div class="navbar-icons">
-    <a href="#" class="icon-link">
+    <!-- <a href="#" class="icon-link"> -->
+    <%= link_to root_path, class: "icon-link" do %>
       <%= helpers.inline_svg 'icons/Home.svg', alt: "Home Icon", class: "icon active" %>
-    </a>
-    <%= link_to new_postagem_path, class: "icon-link" do %>
-      <%= helpers.inline_svg 'icons/AddIcon.svg', alt: "Criar Postagem", class: "icon" %>
-    <% end %>
-
-    <%= link_to new_comunidade_path, class: "icon-link" do %>
-      <%= helpers.inline_svg 'icons/AddIcon.svg', alt: "Criar Comunidade", class: "icon" %>
+      <% end %>
+    <!-- </a> -->
+    <%= link_to new_social_content_path, class: "icon-link" do %>
+      <%= helpers.inline_svg 'icons/AddIcon.svg', alt: "Criar", class: "icon" %>
     <% end %>
     <a href="#" class="icon-link">
       <%= helpers.inline_svg 'icons/MessageIcon.svg', alt: "Messages", class: "icon" %>

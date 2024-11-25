@@ -13,6 +13,11 @@ function isInHome()
     return window.location.pathname === "/"
 }
 
+function isInCreationCommunityPostPage()
+{
+    return window.location.pathname === "social_community_post/new"
+} 
+
 function toggleComment()
 {
     if(!isInHome()) return;
@@ -63,6 +68,28 @@ function searchCommunityRequestWDebounce()
     });
 }
 
+function handleCreationMethodSelection()
+{
+    const communityButton = document.getElementById("show-community-form");
+    const postButton = document.getElementById("show-post-form");
+    const communityForm = document.getElementById("community-form");
+    const postForm = document.getElementById("post-form");
+  
+    communityButton.addEventListener("click", () => {
+      communityForm.style.display = "block";
+      postForm.style.display = "none";
+      communityButton.classList.add("selected");
+      postButton.classList.remove("selected");
+    });
+  
+    postButton.addEventListener("click", () => {
+      postForm.style.display = "block";
+      communityForm.style.display = "none";
+      communityButton.classList.remove("selected");
+      postButton.classList.add("selected");
+    });
+}
+
 document.addEventListener('turbo:load', toggleDropdown);
 document.addEventListener('turbo:load', toggleComment);
-document.addEventListener('turbo:load', searchCommunityRequestWDebounce);
+document.addEventListener('turbo:load', handleCreationMethodSelection);

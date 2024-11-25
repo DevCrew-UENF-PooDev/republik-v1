@@ -1,7 +1,7 @@
 <%= render Templatee::FormWInfo::FormWInfoComponent.new(
   fields: [
-    { name: 'email', label: 'E-mail', placeholder: 'Informe-me o seu e-mail', type: 'email', value: '', auto_complete: 'email' },
-    { name: 'password', label: 'Senha', placeholder: 'Informe-me a sua senha', type: 'password', value: '', auto_complete: 'current-password' },
+    { name: 'email', label: 'E-mail', placeholder: 'Informe-me o seu e-mail', type: 'email_field', value: '', auto_complete: 'email' },
+    { name: 'password', label: 'Senha', placeholder: 'Informe-me a sua senha', type: 'password_field', value: '', auto_complete: 'current-password' },
   ],
   on_submit: { url: session_path(resource_name) },
   form_name: 'Login',

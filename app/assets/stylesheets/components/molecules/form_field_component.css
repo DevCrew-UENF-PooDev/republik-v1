@@ -6,7 +6,8 @@
     font-family: 'Inria Sans', sans-serif;
 }
 
-.field-container.field-with-error input {
+.field-container.field-with-error input,
+.field-container textarea {
     border-color: red;
     border-width: 2px;
 }
@@ -15,7 +16,8 @@
     font-weight: bold;
 }
 
-.field-container input {
+.field-container input,
+.field-container textarea {
     width: 100%;
     color: black;
     font-family: 'Inria Sans', sans-serif;
@@ -27,7 +29,16 @@
     font-size: 20px;
 }
 
-.field-container input::placeholder {
+.field-container textarea {
+    resize: vertical;
+    min-height: 60px;
+    max-height: 120px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.field-container input::placeholder,
+.field-container textarea::placeholder {
     opacity: 0.7;
     color: black;
     font-weight: bold;

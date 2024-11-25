@@ -1,0 +1,75 @@
+.outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    min-width: 320px;
+}
+
+.outer-container .main-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80vh;
+    min-width: 320px;
+    margin-top: 3em;
+}
+
+.outer-container .main-container .form-buttons {
+    display: flex;
+    gap: 0.5em;
+}
+
+.outer-container .main-container .form-buttons .btn {
+    min-width: 150px;
+    min-height: 40px;
+    background: none;
+    border: 1px solid white;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.outer-container .main-container .form-buttons .btn.selected,
+.outer-container .main-container .form-buttons .btn:hover {
+    background-color: #648EFC;
+}
+
+.outer-container .main-container .form-body-container {
+    flex: 1;
+    margin-top: 1em;
+}
+
+.outer-container .main-container .form-body-container .form-container {
+    height: 100%;
+}
+
+.outer-container .main-container .form-body-container form  {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--quinary);
+    min-width: 100%;
+    height: 100%;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 0.5rem;
+}
+
+.outer-container .main-container .form-body-container h1 {
+    font-family: 'Iceberg', sans-serif; 
+    font-weight: 900;
+    font-size: 2rem;
+    margin-left: 1rem;
+    line-height: 1;
+}
+
+.outer-container .main-container .form-body-container .fields {
+    flex: 1 1 0%;
+    margin: 0.5rem 0;
+    overflow: auto;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
