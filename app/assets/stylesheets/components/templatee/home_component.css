@@ -253,6 +253,10 @@
   opacity: 0;
 }
 
+.comment-form {
+  position: relative;
+}
+
 .comment .comment-content {
   padding: 0 1em;
   border-bottom: 1px solid #555;

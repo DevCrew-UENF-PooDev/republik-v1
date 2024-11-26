@@ -1,7 +1,12 @@
 <%= stylesheet_link_tag "components/molecules/form_field_component" %>
 <div class="field-container <%= 'field-with-error' if @is_field_invalid %>">
     <%= f.label name, label %>
-    <%= f.public_send("#{type}", name, placeholder: placeholder, class: "form-control", value: value, autocomplete: auto_complete) %>
+    <% case @type %>
+      <% when "select" %>
+        <%= @f.select @name, @options, { placeholder: @placeholder }, { class: "form-control", **@rest } %>
+      <% else %>
+        <%= f.public_send("#{type}", name, class: "form-control", value: value, **@rest) %>
+    <% end %>
     <div class="form-errors">
         <% if @errors_messages.present? %>
           <% @errors_messages.each do |error| %>

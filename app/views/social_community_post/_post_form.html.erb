@@ -1,0 +1,41 @@
+<%= form_with(model: @postagem, url: create_post_path, method: :post, remote: true, id: "post-form-f", data: { turbo_stream: true }) do |form| %>
+    <h1>Crie uma Postagem</h1>
+    <div class="fields">
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "titulo",
+            label: "Título",
+            errors_messages: @postagem.errors["titulo"],
+            placeholder: "Título da Postagem",
+            type: "text_field",
+            value: @postagem.send("titulo"),
+            is_field_invalid: @postagem.errors[:titulo].any?,
+            auto_complete: "titulo"
+        ) %>
+        <!-- Preciso criar um customizado para isso -->
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "conteudo",
+            label: "Conteúdo",
+            errors_messages: @postagem.errors["conteudo"],
+            placeholder: "Conteúdo da Postagem",
+            type: "text_area",
+            value: @postagem.send("conteudo"),
+            is_field_invalid: @postagem.errors[:conteudo].any?,
+            auto_complete: "conteudo"
+        ) %>
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "comunidade_id",
+            label: "Postar em",
+            errors_messages: @postagem.errors["comunidade_id"],
+            placeholder: "Comunidade",
+            type: "select",
+            value: @postagem.send("comunidade_id"),
+            is_field_invalid: @postagem.errors[:comunidade_id].any?,
+            options: [["Nenhuma (Meu perfil)", nil]] + @comunidades_participadas.map { |c| [c.nome, c.id] },
+            auto_complete: "comunidade"
+        ) %>
+    </div>
+    <%= render Atoms::CustomButton::CustomButtonComponent.new(name: "Criar Postagem") %>
+<% end %>

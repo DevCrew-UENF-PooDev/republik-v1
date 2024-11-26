@@ -4,6 +4,9 @@ class Comunidade < ApplicationRecord
   has_many :membros
   has_many :usuarios, through: :membros
 
+  validates :nome, presence: { message: "Nome é obrigatório." }
+  validates :nome, length: { minimum: 5, message: "O Nome da comunidade deve ter pelo menos 5 caracteres." }
+
   def ultima_atividade
     postagem_recente = postagens.order(updated_at: :desc).first
     if postagem_recente

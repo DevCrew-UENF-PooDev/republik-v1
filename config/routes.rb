@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     end
   end
   get "social_community_post/new", to: "social_community_post#new", as: :new_social_content
-  post "social_community_post/create", to: "social_community_post#create", as: :create_social_content
+  post "social_community_post/create_community", to: "social_community_post#create_community", as: :create_community
+  post "social_community_post/create_post", to: "social_community_post#create_post", as: :create_post
 end

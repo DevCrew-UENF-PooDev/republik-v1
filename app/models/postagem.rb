@@ -4,6 +4,10 @@ class Postagem < ApplicationRecord
   has_many :comentarios, dependent: :destroy
   has_many :reacoes, dependent: :destroy
 
+  validates :titulo, presence: { message: "Título é obrigatório." }
+  validates :conteudo, presence: { message: "Conteúdo é obrigatório." }
+  validates :titulo, length: { minimum: 5, message: "O Título deve ter pelo menos 5 caracteres." }
+
   validate :usuario_deve_participar_da_comunidade, if: -> { comunidade.present? }
 
   # Funcoes

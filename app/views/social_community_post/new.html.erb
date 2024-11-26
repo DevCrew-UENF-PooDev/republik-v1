@@ -8,66 +8,10 @@
         </div>
         <div class="form-body-container">
             <div class="form-container" id="post-form">
-                <%= form_with(model: @postagem, url: create_social_content_path, method: :post, local: true) do |form| %>
-                    <h1>Crie uma Postagem</h1>
-                    <div class="fields">
-                        <%= render Molecules::FormField::FormFieldComponent.new(
-                            f: form,
-                            name: "titulo",
-                            label: "Título",
-                            errors_messages: @postagem.errors["titulo"],
-                            placeholder: "Título da Postagem",
-                            type: "text_field",
-                            value: @postagem.send("titulo"),
-                            is_field_invalid: @postagem.errors[:titulo].any?,
-                            auto_complete: "titulo"
-                        ) %>
-                        <!-- Preciso criar um customizado para isso -->
-                        <%= render Molecules::FormField::FormFieldComponent.new(
-                            f: form,
-                            name: "conteudo",
-                            label: "Conteúdo",
-                            errors_messages: @postagem.errors["conteudo"],
-                            placeholder: "Conteúdo da Postagem",
-                            type: "text_area",
-                            value: @postagem.send("conteudo"),
-                            is_field_invalid: @postagem.errors[:conteudo].any?,
-                            auto_complete: "conteudo"
-                        ) %>
-                    </div>
-                    <%= render Atoms::CustomButton::CustomButtonComponent.new(name: "Criar Postagem") %>
-                <% end %>
+                <%= render partial: "social_community_post/post_form", locals: { postagem: @postagem, comunidades_participadas: @comunidades_participadas } %>
             </div>
-        
             <div class="form-container" id="community-form" style="display: none;">
-                <%= form_with(model: @comunidade, url: create_social_content_path, method: :post, local: true) do |form| %>
-                    <h1>Crie uma Comunidade</h1>
-                    <div class="fields">
-                        <%= render Molecules::FormField::FormFieldComponent.new(
-                            f: form,
-                            name: "nome",
-                            label: "Nome",
-                            errors_messages: @comunidade.errors["nome"],
-                            placeholder: "Nome da Comunidade",
-                            type: "text_field",
-                            value: @comunidade.send("nome"),
-                            is_field_invalid: @comunidade.errors[:nome].any?,
-                            auto_complete: "nome"
-                        ) %>
-                        <%= render Molecules::FormField::FormFieldComponent.new(
-                            f: form,
-                            name: "descricao",
-                            label: "Descrição",
-                            errors_messages: @comunidade.errors["descricao"],
-                            placeholder: "Descrição da Comunidade",
-                            type: "text_area",
-                            value: @comunidade.send("descricao"),
-                            is_field_invalid: @comunidade.errors[:descricao].any?,
-                            auto_complete: "descricao"
-                        ) %>
-                    </div>
-                    <%= render Atoms::CustomButton::CustomButtonComponent.new(name: "Criar Comunidade") %>
-                <% end %>
+                <%= render partial: "social_community_post/community_form", locals: { comunidade: @comunidade } %>
             </div>
         </div>
     </div>

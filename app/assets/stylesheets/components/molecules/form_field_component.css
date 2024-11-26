@@ -6,8 +6,13 @@
     font-family: 'Inria Sans', sans-serif;
 }
 
+.field-container:last-child {
+    margin-bottom: 0.5rem;
+}
+
 .field-container.field-with-error input,
-.field-container textarea {
+.field-container.field-with-error textarea,
+.field-container.field-with-error select, {
     border-color: red;
     border-width: 2px;
 }
@@ -17,7 +22,8 @@
 }
 
 .field-container input,
-.field-container textarea {
+.field-container textarea,
+.field-container select {
     width: 100%;
     color: black;
     font-family: 'Inria Sans', sans-serif;
@@ -46,7 +52,8 @@
 
 .field-container .form-errors {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     column-gap: 0.5em;
     margin-top: -10px;

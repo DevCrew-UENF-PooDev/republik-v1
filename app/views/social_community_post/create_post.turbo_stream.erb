@@ -1,0 +1,6 @@
+<turbo-stream action="replace" target="post-form-f">
+  <template>
+    <%= render partial: "social_community_post/post_form", formats: [:html],
+      locals: { postagem: @postagem, comunidades_participadas: @comunidades_participadas } %>
+  </template>
+</turbo-stream>
