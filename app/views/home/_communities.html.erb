@@ -2,7 +2,9 @@
   <% if communities.present? %>
     <% communities.each do |comunidade| %>
       <div class="community" id="community-<%= comunidade.id %>">
-        <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", alt: "Logo #{comunidade.nome}", class: "avatar") %>
+      <%= link_to comunidade_path(comunidade.id), class: "icon-link" do %>
+      <%= inline_svg 'icons/ComunidadeImagePerfilPlaceHolder.svg', alt: "Home Icon", class: "avatar" %>
+      <% end %>
         <div class="community-info">
           <span class="name"><%= comunidade.nome %></span>
           <p class="last-activity"><%= comunidade.ultima_atividade %></p>

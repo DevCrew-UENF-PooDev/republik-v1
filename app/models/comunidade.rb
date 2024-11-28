@@ -15,4 +15,8 @@ class Comunidade < ApplicationRecord
       "Nenhuma atividade recente"
     end
   end
+
+  def posts
+    self.postagens.order(updated_at: :desc)
+  end
 end

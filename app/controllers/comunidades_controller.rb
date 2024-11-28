@@ -45,6 +45,10 @@ class ComunidadesController < ApplicationController
     end
   end
 
+  def show
+    @comunidade = Comunidade.find(params[:id])
+    @posts = @comunidade.posts
+  end
 
   private
 
