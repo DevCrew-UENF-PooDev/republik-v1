@@ -6,39 +6,27 @@
     <div class="sidebar">
       <h2>Amigos</h2>
       <div class="sidebar-section">
-        <!-- Amigo 1 -->
-        <div class="friend">
-          <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Rivera Escriva", :class => "avatar") %>
-          <div class="friend-info">
-            <div class="friend-header">
-              <span class="name">Rivera Escriva</span>
-              <span class="date">01/09/2024</span>
+        <% helpers.current_usuario.friends.each do |friend| %>
+          <div class="friend">
+            <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar do Amigo", :class => "avatar") %>
+            <div class="friend-info">
+              <div class="friend-header">
+                <span class="name"><%= friend.username %></span>
+                <span class="date">01/09/2024</span>
+              </div>
+              <p class="status">Mensagem</p>
             </div>
-            <p class="status">¿Terminó el trabalho?</p>
+            <span class="status-indicator online"></span>
           </div>
-          <span class="status-indicator online"></span>
-        </div>
-
-        <!-- Amigo 2 -->
-        <div class="friend">
-          <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %>
-          <div class="friend-info">
-            <div class="friend-header">
-              <span class="name">Enzo Alberix</span>
-              <span class="date">20/08/2024</span>
-            </div>
-            <p class="status">Assistiu o último ep de OP?</p>
-          </div>
-          <span class="status-indicator online"></span>
-        </div>
+        <% end %>
       </div>
 
       <h2>Comunidades</h2>
-      <div class="comunidade-search">
+      <!-- <div class="comunidade-search">
         <%= form_with(url: search_community_path, method: :get, remote: true, class: "search-form", data: { turbo_stream: true }, id: "community-search-form") do |form| %>
           <%= form.text_field :query, class: "form-control", placeholder: "Buscar comunidades...", id: "search-query" %>
         <% end %>
-      </div>
+      </div> -->
 
       <%= render partial: "home/communities", locals: { communities: @communities, comunidades_participadas: @comunidades_participadas } %>
     </div>

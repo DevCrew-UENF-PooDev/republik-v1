@@ -1,0 +1,12 @@
+<turbo-stream action="replace" target="user-<%= @desired_friend.id %>">
+  <template>
+    <div class="user" id="user-<%= @desired_friend.id %>">
+        <p><%= @desired_friend.nome %></p>
+        <% if @action == :send_friend_request %>
+            <%= button_to 'Pedir Amizade', send_friend_request_path(@desired_friend), method: :post, remote: true, class: '', data: { turbo_stream: true } %>
+        <% else %>
+            <%= button_to 'Cancelar Pedido', send_friend_request_path(@desired_friend), method: :post, remote: true, class: '', data: { turbo_stream: true } %>
+        <% end %>
+    </div>
+  </template>
+</turbo-stream>

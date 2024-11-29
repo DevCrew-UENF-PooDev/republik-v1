@@ -7,13 +7,15 @@
 
   <!-- Ícones de Navegação -->
   <div class="navbar-icons">
-    <!-- <a href="#" class="icon-link"> -->
     <%= link_to root_path, class: "icon-link" do %>
       <%= helpers.inline_svg 'icons/Home.svg', alt: "Home Icon", class: "icon active" %>
-      <% end %>
-    <!-- </a> -->
+    <% end %>
     <%= link_to new_social_content_path, class: "icon-link" do %>
       <%= helpers.inline_svg 'icons/AddIcon.svg', alt: "Criar", class: "icon" %>
+    <% end %>
+
+    <%= link_to search_path, class: "icon-link" do %>
+      <%= helpers.inline_svg 'icons/search.svg', alt: "Buscar", class: "icon" %>
     <% end %>
     <a href="#" class="icon-link">
       <%= helpers.inline_svg 'icons/MessageIcon.svg', alt: "Messages", class: "icon" %>
