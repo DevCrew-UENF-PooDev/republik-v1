@@ -4,11 +4,21 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_usuario!
   before_action :usuario_signed_in?
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :atualizar_ultimo_acesso
 
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit :sign_up, keys: [:username, :nome, :curso, :instituicao]
-    devise_parameter_sanitizer.permit :account_update, keys: [:username, :nome, :curso, :instituicao]
+    devise_parameter_sanitizer.permit :sign_up, keys: [ :username, :nome, :curso, :instituicao ]
+    devise_parameter_sanitizer.permit :account_update, keys: [ :username, :nome, :curso, :instituicao ]
+  end
+
+
+
+  private
+
+  def atualizar_ultimo_acesso
+    return unless current_usuario
+    current_usuario.update(ultima_vez_visto_em: Time.current)
   end
 end

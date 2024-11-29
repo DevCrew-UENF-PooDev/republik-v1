@@ -12,6 +12,9 @@ class ReacoesController < ApplicationController
       @reacao = @postagem.reacoes.build(tipo: params[:tipo], usuario: current_usuario)
       if @reacao.save
         flash[:notice] = "Reação Computada"
+        if @postagem.usuario != current_usuario
+          @postagem.enviar_notificacao("reagiu", @postagem.usuario)
+        end
       else
         flash[:notice] = "Erro ao adicionar reação"
       end

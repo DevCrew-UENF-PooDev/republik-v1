@@ -11,7 +11,7 @@
     
       <h2>Users</h2>
       <% @usuarios.each do |user| %>
-        <div id="user-<%= @user.id %>" class="user-item">
+        <div id="user-<%= user.id %>" class="user-item">
           <p><%= user.nome %></p>
           <%= button_to 'Pedir Amizade', send_friend_request_path(user), method: :post, remote: true, class: '', data: { turbo_stream: true } %>
         </div>

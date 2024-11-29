@@ -34,6 +34,7 @@ class HomeController < ApplicationController
       @action = :send_friend_request
     else
       current_usuario.seguindo_usuarios << @desired_friend
+      current_usuario.enviar_notificacao("foi seguido", @desired_friend)
       @action = :cancel_friend_request
     end
 

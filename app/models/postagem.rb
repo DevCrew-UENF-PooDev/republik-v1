@@ -27,6 +27,15 @@ class Postagem < ApplicationRecord
     self.reacoes.count # Mudar futuramente
   end
 
+  def enviar_notificacao(acao, alvo)
+    Notificacao.create!(
+      usuario: alvo,               # O alvo da notificação (quem vai receber)
+      acao: acao,                  # A ação (ex: "foi seguido")
+      alvo_id: self.id,            # O ID da postagem
+      alvo_type: "Postagem"         # O tipo do alvo, neste caso 'Postagem'
+    )
+  end
+
   private
 
   def usuario_deve_participar_da_comunidade

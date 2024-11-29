@@ -8,10 +8,13 @@ class ComentariosController < ApplicationController
 
     if @comentario.save
       flash[:notice] = "Comentário adicionado com sucesso!"
+      if @postagem.usuario != current_usuario
+        @postagem.enviar_notificacao("realizou uma reação", @postagem.usuario)
+      end
     else
       flash[:alert] = "Não foi possível adicionar o comentário."
     end
-    redirect_to postagem_path(@postagem)
+    redirect_to root_path
   end
 
   private

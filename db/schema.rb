@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_11_200409) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_223642) do
   create_table "comentarios", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,6 +39,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_11_200409) do
     t.datetime "updated_at", null: false
     t.index ["comunidade_id"], name: "index_membros_on_comunidade_id"
     t.index ["usuario_id"], name: "index_membros_on_usuario_id"
+  end
+
+  create_table "notificacaos", force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.string "acao"
+    t.integer "alvo_id"
+    t.string "alvo_type"
+    t.boolean "lida", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_notificacaos_on_usuario_id"
   end
 
   create_table "postagens", force: :cascade do |t|
@@ -82,6 +93,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_11_200409) do
     t.string "nome"
     t.string "curso"
     t.string "instituicao"
+    t.datetime "ultima_vez_visto_em"
     t.index ["email"], name: "index_usuarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
@@ -91,6 +103,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_11_200409) do
   add_foreign_key "comunidades", "usuarios", column: "administrador_id"
   add_foreign_key "membros", "comunidades"
   add_foreign_key "membros", "usuarios"
+  add_foreign_key "notificacaos", "usuarios"
   add_foreign_key "postagens", "comunidades"
   add_foreign_key "postagens", "usuarios"
   add_foreign_key "reacaos", "postagens"
