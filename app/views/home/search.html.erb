@@ -1,39 +1,64 @@
-<%= render(Organisms::Header::NavbarComponent.new()) %>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<%= form_with url: search_community_path, method: :get, remote: true, class: "search-form", data: { turbo_stream: true }, id: "community-search-form" do %>
-  <div class="search-bar">
-    <%= text_field_tag :query, params[:query], placeholder: "Search Communities or Users", class: "search-input" %>
-    <%= submit_tag "Search", class: "search-button" %>
-  </div>
-<% end %>
+<%= stylesheet_link_tag "pages/form_alt_button" %>
+<%= stylesheet_link_tag "pages/search_page" %>
 
-<h1>Search Results</h1>
-
-<div id="search-container">
-    <% if @comunidades.any? || @usuarios.any? %>
-    <h2>Communities</h2>
-    <% @comunidades.each do |community| %>
-      <div class="community-item">
-        <p><%= community.nome %></p>
+<div class="main-container">
+  <%= render(Organisms::Header::NavbarComponent.new()) %>
+  <div class="search-main-container">
+    <%= form_with url: perform_search_path, method: :get, remote: true, class: "search-form", data: { turbo_stream: true }, id: "search-form" do |form| %>
+      <%= render Molecules::FormField::FormFieldComponent.new(
+        f: form,
+        name: "query",
+        label: "Buscar",
+        errors_messages: [],
+        placeholder: "Buscar...",
+        type: "text_field",
+        value: "",
+        is_field_invalid: false,
+        auto_complete: "query",
+        id: "search-query"
+      ) %>
+    <% end %>
+    
+    <div class="results-container">
+      <div class="form-buttons">
+        <button id="show-communities-results" class="btn selected">Comunidade</button>
+        <button id="show-users-results" class="btn">Usuários</button>
       </div>
-    <% end %>
-  
-    <h2>Users</h2>
-    <% @usuarios.each do |user| %>
-        <div id="user-<%= user.id %>" class="user-item">
-            <p><%= user.nome %></p>
-            <%= button_to 'Pedir Amizade', send_friend_request_path(user), method: :post, remote: true, class: '', data: { turbo_stream: true } %>
+      <div id="search-results-container">
+        <div id="communities-result">
+          <% if @comunidades.any? %>
+            <% @comunidades.each do |community| %>
+              <div id="community-<%= community.id %>" class="item">
+                <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar da Comunidade #{community.nome}", :class => "avatar") %>
+                <div class="info">
+                  <p><%= community.nome %></p>
+                  <span>Enviou um pedido de amizade!</span>
+                  <div class="confirmation-buttons">
+                    <button class="btn">Aceitar</button>
+                    <button class="btn">Recusar</button>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <p class="not-found">Nenhuma comunidade contendo "<%= @query %>" foi encontrada.</p>
+          <% end %>
         </div>
-    <% end %>
-  <% else %>
-    <p>No results found for "<%= @query %>".</p>
-  <% end %>
+        <div class="vl"></div>
+        <div id="users-result">
+          <% if @usuarios.any? %>
+            <% @usuarios.each do |user| %>
+              <%= render partial: "home/friend_item", locals: { user: user, current_usuario: current_usuario } %>
+            <% end %>
+          <% else %>
+            <p class="not-found">Nenhum usuário contendo "<%= @query %>" foi encontrado.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>  
 </div>
 
+<a href="#search-query" class="go-back-to-top">
+  <%= inline_svg 'icons/DoubleArrowUp.svg', alt: "Messages", class: "icon" %>
+</a>

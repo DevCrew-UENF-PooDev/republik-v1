@@ -1,0 +1,11 @@
+<div id="user-<%= user.id %>" class="item">
+  <%= image_tag("icons/PerfilImagePlaceHolder.svg", alt: "Avatar de #{user.nome}", class: "avatar") %>
+  <div class="info">
+    <p><%= user.nome %></p>
+    <span><%= t("friend_status.#{current_usuario.friend_status(user)}") %></span>
+    <div class="confirmation-buttons">
+      <%= friendship_buttons(user, current_usuario) %>
+    </div>
+  </div>
+</div>
+  

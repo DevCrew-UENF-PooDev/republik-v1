@@ -21,10 +21,27 @@ class ComunidadesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Sua participação foi atualizada." }
+      format.html { redirect_back(fallback_location: root_path) }
       format.turbo_stream
     end
   end
+
+  # def join
+  #   @comunidade = Comunidade.find(params[:id])
+
+  #   if current_usuario.comunidades.include?(@comunidade)
+  #     current_usuario.comunidades.delete(@comunidade)
+  #     @action = :leave
+  #   else
+  #     current_usuario.comunidades << @comunidade
+  #     @action = :join
+  #   end
+
+  #   respond_to do |format|
+  #     format.html { redirect_to root_path, notice: "Sua participação foi atualizada." }
+  #     format.turbo_stream
+  #   end
+  # end
 
 
   def new

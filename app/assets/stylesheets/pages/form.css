@@ -15,28 +15,6 @@
     margin-top: 3em;
 }
 
-.outer-container .main-container .form-buttons {
-    display: flex;
-    gap: 0.5em;
-}
-
-.outer-container .main-container .form-buttons .btn {
-    min-width: 150px;
-    min-height: 40px;
-    background: none;
-    border: 1px solid white;
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.5s;
-}
-
-.outer-container .main-container .form-buttons .btn.selected,
-.outer-container .main-container .form-buttons .btn:hover {
-    background-color: #648EFC;
-}
-
 .outer-container .main-container .form-body-container {
     flex: 1;
     margin-top: 1em;

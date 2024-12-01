@@ -28,4 +28,9 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  friend_status:
+    friends: "Vocês já são amigos"
+    request_received: "Enviou um pedido de amizade!"
+    request_sent: "Pedido de Amizade Enviado!"
+    not_friends: "Ainda não é seu amigo!"
+

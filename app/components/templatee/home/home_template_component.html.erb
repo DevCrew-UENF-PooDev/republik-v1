@@ -22,12 +22,6 @@
       </div>
 
       <h2>Comunidades</h2>
-      <!-- <div class="comunidade-search">
-        <%= form_with(url: search_community_path, method: :get, remote: true, class: "search-form", data: { turbo_stream: true }, id: "community-search-form") do |form| %>
-          <%= form.text_field :query, class: "form-control", placeholder: "Buscar comunidades...", id: "search-query" %>
-        <% end %>
-      </div> -->
-
       <%= render partial: "home/communities", locals: { communities: @communities, comunidades_participadas: @comunidades_participadas } %>
     </div>
 

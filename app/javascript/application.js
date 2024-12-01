@@ -13,6 +13,11 @@ function isInHome()
   return window.location.pathname === "/"
 }
 
+function isInSearchPage() 
+{
+  return window.location.pathname === "/search"
+}
+
 function isInCreationCommunityPostPage()
 {
   return window.location.pathname === "/social_community_post/new"
@@ -41,8 +46,8 @@ function toggleDropdown()
   const avatarButton = document.getElementById("avatar-button");
   const dropdownMenu = document.getElementById("dropdown-menu");
   avatarButton.addEventListener("click", function(event) {
-    event.preventDefault(); // Evita qualquer ação padrão
-    dropdownMenu.classList.toggle("hidden"); // Alterna a visibilidade do menu
+    event.preventDefault();
+    dropdownMenu.classList.toggle("hidden");
   });
   window.addEventListener("click", function(event) {
     if (!avatarButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
@@ -53,9 +58,10 @@ function toggleDropdown()
 
 function searchCommunityRequestWDebounce()
 {
-  if(!isInHome) return;
+  if(!isInSearchPage()) return
+  
   const searchField = document.getElementById("search-query");
-  const form = document.getElementById("community-search-form");
+  const form = document.getElementById("search-form");
 
   let debounceTimeout;
 
@@ -64,8 +70,58 @@ function searchCommunityRequestWDebounce()
 
     debounceTimeout = setTimeout(() => {
       form.requestSubmit();
-    }, 500);
+    }, 200);
   });
+}
+
+function handleSearchMethodSelection() {
+  if (!isInSearchPage()) return;
+
+  const communityButton = document.getElementById("show-communities-results");
+  const userButton = document.getElementById("show-users-results");
+
+  const communitiesResult = document.getElementById("communities-result");
+  const usersResult = document.getElementById("users-result");
+
+  function updateLayout() {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+    if (isMobile) {
+      communitiesResult.classList.add("visible");
+      usersResult.classList.remove("visible");
+      communityButton.classList.add("selected");
+      userButton.classList.remove("selected");
+
+      communityButton.style.display = "inline-block";
+      userButton.style.display = "inline-block";
+
+      communityButton.addEventListener("click", () => {
+        communitiesResult.classList.add("visible");
+        usersResult.classList.remove("visible");
+        communityButton.classList.add("selected");
+        userButton.classList.remove("selected");
+      });
+
+      userButton.addEventListener("click", () => {
+        usersResult.classList.add("visible");
+        communitiesResult.classList.remove("visible");
+        communityButton.classList.remove("selected");
+        userButton.classList.add("selected");
+      });
+    } else {
+      communitiesResult.classList.add("visible");
+      usersResult.classList.add("visible");
+
+      communityButton.style.display = "none";
+      userButton.style.display = "none";
+
+      communityButton.classList.remove("selected");
+      userButton.classList.remove("selected");
+    }
+  }
+
+  window.addEventListener("resize", updateLayout);
+  updateLayout();
 }
 
 function handleCreationMethodSelection()
@@ -95,3 +151,5 @@ function handleCreationMethodSelection()
 document.addEventListener('turbo:load', toggleDropdown);
 document.addEventListener('turbo:load', toggleComment);
 document.addEventListener('turbo:load', handleCreationMethodSelection);
+document.addEventListener('turbo:load', searchCommunityRequestWDebounce);
+document.addEventListener('turbo:load', handleSearchMethodSelection);

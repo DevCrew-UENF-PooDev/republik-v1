@@ -1,0 +1,22 @@
+.form-buttons {
+    display: flex;
+    gap: 0.5em;
+    margin-left: 5px;
+}
+
+.btn {
+    min-width: 150px;
+    min-height: 40px;
+    background: none;
+    border: 1px solid white;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.btn.selected,
+.btn:hover {
+    background-color: #648EFC;
+}

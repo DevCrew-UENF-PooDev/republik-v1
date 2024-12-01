@@ -10,17 +10,11 @@ class HomeController < ApplicationController
     @usuarios = Usuario.where("id <> ?", current_usuario.id)
   end
 
-  def search_community
+  def perform_search
     @query = params[:query]
-    if @query.present?
-      @comunidades = Comunidade.where("nome LIKE ?", "%#{@query}%")
-      @usuarios = Usuario.where("(username LIKE ? OR nome LIKE ?) and id <> ?", "%#{@query}%", "%#{@query}%", current_usuario.id)
-    else
-      @comunidades = []
-      @usuarios = []
-    end
+    @comunidades = Comunidade.where("nome LIKE ?", "%#{@query}%")
+    @usuarios = Usuario.where("(username LIKE ? OR nome LIKE ?) and id <> ?", "%#{@query}%", "%#{@query}%", current_usuario.id)
 
-    # Renderiza a página de resultados
     respond_to do |format|
       format.html { redirect_to search_path, notice: "Comunidades Pesquisadas." }
       format.turbo_stream
@@ -29,17 +23,26 @@ class HomeController < ApplicationController
 
   def send_friend_request
     @desired_friend = Usuario.find(params[:id])
-    if current_usuario.seguindo_usuarios.include?(@desired_friend)
-      @current_usuario.seguindo_usuarios.delete(@desired_friend)
-      @action = :send_friend_request
-    else
-      current_usuario.seguindo_usuarios << @desired_friend
-      current_usuario.enviar_notificacao("foi seguido", @desired_friend)
-      @action = :cancel_friend_request
+    current_status = current_usuario.friend_status(@desired_friend)
+
+    case current_status
+    when :request_received
+      if params[:action_type] == "accept"
+        current_usuario.accept_friend_request(@desired_friend)
+      else
+        current_usuario.decline_friend_request(@desired_friend)
+      end
+    when :request_sent
+      current_usuario.cancel_friend_request(@desired_friend)
+    when :not_friends
+      current_usuario.send_friend_request(@desired_friend)
+    when :friends
+      current_usuario.decline_friend_request(@desired_friend)
+      current_usuario.cancel_friend_request(@desired_friend)
     end
 
     respond_to do |format|
-      format.html { redirect_to search_path, notice: "Sua participação foi atualizada." }
+      format.html { redirect_back(fallback_location: root_path) }
       format.turbo_stream
     end
   end
