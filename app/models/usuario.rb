@@ -31,13 +31,13 @@ class Usuario < ApplicationRecord
     friend_send_request = friend.seguindo_usuarios.include?(self)
     user_send_request = self.seguindo_usuarios.include?(friend)
     if user_send_request && friend_send_request
-      :friends # Desfazer Amizade
+      :friends # Já é amigo pode Desfazer Amizade
     elsif friend_send_request
-      :request_received # Aceitar ou Recusar
+      :request_received # Já enviaram pedido pode Aceitar ou Recusar
     elsif user_send_request
-      :request_sent # Cancelar
+      :request_sent # Usuário enviou pedido pode Cancelar
     else
-      :not_friends # Enviar Pedido
+      :not_friends # Você ainda não é amigo pode Enviar Pedido
     end
   end
 
@@ -66,15 +66,6 @@ class Usuario < ApplicationRecord
       enviar_notificacao("foi seguido", friend) # Notifica o amigo
     end
   end
-
-  # def send_friend_request(friend)
-  #   if self.seguindo_usuarios.include?(friend)
-  #     self.seguindo_usuarios.delete(friend) # Cancela o pedido de amizade
-  #   else
-  #     self.seguindo_usuarios << friend
-  #     enviar_notificacao("foi seguido", friend) # Notifica o amigo
-  #   end
-  # end
 
   def online?
     ultima_vez_visto_em && ultima_vez_visto_em > 5.minutes.ago

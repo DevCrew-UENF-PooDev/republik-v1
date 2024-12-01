@@ -28,17 +28,7 @@
         <div id="communities-result">
           <% if @comunidades.any? %>
             <% @comunidades.each do |community| %>
-              <div id="community-<%= community.id %>" class="item">
-                <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar da Comunidade #{community.nome}", :class => "avatar") %>
-                <div class="info">
-                  <p><%= community.nome %></p>
-                  <span>Enviou um pedido de amizade!</span>
-                  <div class="confirmation-buttons">
-                    <button class="btn">Aceitar</button>
-                    <button class="btn">Recusar</button>
-                  </div>
-                </div>
-              </div>
+              <%= render partial: "home/community_item", locals: { community: community, current_usuario: current_usuario } %>
             <% end %>
           <% else %>
             <p class="not-found">Nenhuma comunidade contendo "<%= @query %>" foi encontrada.</p>

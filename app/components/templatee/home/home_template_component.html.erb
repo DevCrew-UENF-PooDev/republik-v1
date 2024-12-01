@@ -6,23 +6,23 @@
     <div class="sidebar">
       <h2>Amigos</h2>
       <div class="sidebar-section">
-        <% helpers.current_usuario.friends.each do |friend| %>
-          <div class="friend">
-            <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar do Amigo", :class => "avatar") %>
-            <div class="friend-info">
-              <div class="friend-header">
-                <span class="name"><%= friend.username %></span>
-                <span class="date">01/09/2024</span>
-              </div>
-              <p class="status">Mensagem</p>
-            </div>
-            <span class="status-indicator online"></span>
-          </div>
+        <% if helpers.current_usuario.friends.present? %>
+          <% helpers.current_usuario.friends.each do |friend| %>
+            <%= render partial: "home/friend_item", locals: { user: friend, current_usuario: helperrs.current_usuario } %>
+          <% end %>
+        <% else %>
+          <p class="not-found">Você não possui nenhum amigo.</p>
         <% end %>
       </div>
 
       <h2>Comunidades</h2>
-      <%= render partial: "home/communities", locals: { communities: @communities, comunidades_participadas: @comunidades_participadas } %>
+      <% if @comunidades_participadas.present? %>
+        <% @comunidades_participadas.each do |community| %>
+          <%= render partial: "home/community_item", locals: { community: community, current_usuario: helpers.current_usuario } %>
+        <% end %>
+      <% else %>
+        <p class="not-found">Você não está participando de nenhuma comunidade.</p>
+      <% end %>
     </div>
 
     <!-- Separar depois em Post -->

@@ -12,4 +12,13 @@ module UsersHelper
       button_to "Enviar Pedido", send_friend_request_path(user), method: :post, remote: true, class: "btn", data: { turbo_stream: true }
     end
   end
+
+  def community_buttons(current_user, community)
+    case community.participation_status(current_user)
+    when :community_user
+      button_to "Sair", join_comunidade_path(community), method: :post, remote: true, class: "btn", data: { turbo_stream: true }
+    when :community_not_participate
+      button_to "Entrar", join_comunidade_path(community), method: :post, remote: true, class: "btn", data: { turbo_stream: true }
+    end
+  end
 end

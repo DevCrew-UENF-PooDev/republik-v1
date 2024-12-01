@@ -1,16 +1,6 @@
 <turbo-stream action="replace" target="community-<%= @comunidade.id %>">
   <template>
-    <div class="community" id="community-<%= @comunidade.id %>">
-      <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", alt: "Logo #{@comunidade.nome}", class: "avatar") %>
-      <div class="community-info">
-        <span class="name"><%= @comunidade.nome %></span>
-        <p class="last-activity"><%= @comunidade.ultima_atividade %></p>
-        <% if @action == :join %>
-          <%= button_to 'Sair', join_comunidade_path(@comunidade), method: :post, remote: true, class: 'btn btn-danger', data: { turbo_stream: true } %>
-        <% else %>
-          <%= button_to 'Participar', join_comunidade_path(@comunidade), method: :post, remote: true, class: 'btn btn-success', data: { turbo_stream: true } %>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: "home/community_item", formats: [:html], 
+      locals: { community: @comunidade, current_usuario: current_usuario } %>
   </template>
 </turbo-stream>

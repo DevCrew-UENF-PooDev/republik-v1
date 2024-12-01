@@ -49,34 +49,6 @@
     gap: 2em;
 }
 
-.item {
-    display: flex;
-    gap: 1em;
-    justify-content: center;
-}
-
-.item .avatar {
-    width: 4.5em;
-}
-
-.item .info {
-    display: flex;
-    width: 205px;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 0.5em;
-}
-
-.item .info span {
-    color: gray;
-    margin-bottom: 0.1em;
-}
-
-.confirmation-buttons {
-    display: flex;
-    justify-content: space-between;
-}
-
 .search-main-container .results-container #search-results-container .btn {
     min-width: 100px;
 }

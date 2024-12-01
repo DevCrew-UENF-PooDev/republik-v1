@@ -12,12 +12,12 @@ class ComunidadesController < ApplicationController
   def join
     @comunidade = Comunidade.find(params[:id])
 
-    if current_usuario.comunidades.include?(@comunidade)
-      current_usuario.comunidades.delete(@comunidade)
-      @action = :leave
+    participation_status = @comunidade.participation_status(current_usuario)
+
+    if participation_status == :community_not_participate
+      @comunidade.enter_community(current_usuario)
     else
-      current_usuario.comunidades << @comunidade
-      @action = :join
+      @comunidade.remove_user_from_community(current_usuario)
     end
 
     respond_to do |format|
@@ -25,24 +25,6 @@ class ComunidadesController < ApplicationController
       format.turbo_stream
     end
   end
-
-  # def join
-  #   @comunidade = Comunidade.find(params[:id])
-
-  #   if current_usuario.comunidades.include?(@comunidade)
-  #     current_usuario.comunidades.delete(@comunidade)
-  #     @action = :leave
-  #   else
-  #     current_usuario.comunidades << @comunidade
-  #     @action = :join
-  #   end
-
-  #   respond_to do |format|
-  #     format.html { redirect_to root_path, notice: "Sua participação foi atualizada." }
-  #     format.turbo_stream
-  #   end
-  # end
-
 
   def new
     @comunidade = Comunidade.new

@@ -18,5 +18,5 @@
 
 .btn.selected,
 .btn:hover {
-    background-color: #648EFC;
+    background-color: var(--quaternary);
 }
