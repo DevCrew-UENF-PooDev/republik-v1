@@ -1,5 +1,5 @@
 <div id="user-<%= user.id %>" class="item">
-  <%= image_tag("icons/PerfilImagePlaceHolder.svg", alt: "Avatar de #{user.nome}", class: "avatar") %>
+  <%= image_tag user.imagem_or_default, alt: "Avatar de #{user.nome}", class: "avatar" %>
   <div class="info">
     <p><%= user.nome %></p>
     <span class="truncate"><%= t("friend_status.#{current_usuario.friend_status(user)}") %></span>

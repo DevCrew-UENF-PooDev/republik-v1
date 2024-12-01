@@ -37,10 +37,10 @@ class SocialCommunityPostController < ApplicationController
   private
 
   def params_comunidade
-    params.require(:comunidade).permit(:nome, :descricao)
+    params.require(:comunidade).permit(:nome, :descricao, :avatar)
   end
 
   def params_postagem
-    params.require(:postagem).permit(:titulo, :conteudo, :comunidade_id)
+    params.require(:postagem).permit(:titulo, :conteudo, :comunidade_id, imagens: [])
   end
 end

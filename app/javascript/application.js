@@ -56,6 +56,28 @@ function toggleDropdown()
   });
 }
 
+function togglePostDropdown() 
+{
+  if(!isInHome()) return;
+
+  const dropdowns = document.querySelectorAll(".post-options");
+
+  dropdowns.forEach((dropdown) => {
+    const button = dropdown.querySelector(".post-menu-button");
+    button.addEventListener("click", () => {
+      dropdown.classList.toggle("show");
+      console.log("e")
+    });
+
+    // Fecha o dropdown se clicar fora dele
+    document.addEventListener("click", (event) => {
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove("show");
+      }
+    });
+  });
+}
+
 function searchCommunityRequestWDebounce()
 {
   if(!isInSearchPage()) return
@@ -149,6 +171,7 @@ function handleCreationMethodSelection()
 }
 
 document.addEventListener('turbo:load', toggleDropdown);
+document.addEventListener('turbo:load', togglePostDropdown);
 document.addEventListener('turbo:load', toggleComment);
 document.addEventListener('turbo:load', handleCreationMethodSelection);
 document.addEventListener('turbo:load', searchCommunityRequestWDebounce);

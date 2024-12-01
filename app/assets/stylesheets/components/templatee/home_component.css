@@ -277,3 +277,60 @@
 .comment .user-comment-info .last-activity {
   color: #E07400;
 }
+
+.post-options {
+  position: relative;
+}
+
+.post-option-menu {
+  display: none;
+}
+
+.show .post-option-menu{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  right: 100%;
+  top: 70%;
+  background-color: #333;
+  color: white;
+  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 1));
+  border-radius: 10px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 10px 60px 10px 20px;
+  transition: background-color 0.2s;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.icon-options {
+  padding: 10px;
+  color: white;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.icon-options:hover {
+  background-color: gray;
+}
+
+.option:first-child {
+  border-radius: 10px 10px 0 0;
+}
+
+.option:last-child {
+  border-radius: 0 0 10px 10px;
+}
+
+.option:only-of-type {
+  border-radius: 10px;
+}
+
+.option:hover {
+  background-color: gray;
+}

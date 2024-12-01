@@ -9,11 +9,9 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit :sign_up, keys: [ :username, :nome, :curso, :instituicao ]
-    devise_parameter_sanitizer.permit :account_update, keys: [ :username, :nome, :curso, :instituicao ]
+    devise_parameter_sanitizer.permit :sign_up, keys: [ :username, :nome, :curso, :instituicao, :avatar ]
+    devise_parameter_sanitizer.permit :account_update, keys: [ :username, :nome, :curso, :instituicao, :avatar ]
   end
-
-
 
   private
 

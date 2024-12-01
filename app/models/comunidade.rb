@@ -4,8 +4,14 @@ class Comunidade < ApplicationRecord
   has_many :membros
   has_many :usuarios, through: :membros
 
+  has_one_attached :avatar
+
   validates :nome, presence: { message: "Nome é obrigatório." }
   validates :nome, length: { minimum: 5, message: "O Nome da comunidade deve ter pelo menos 5 caracteres." }
+
+  def imagem_or_default
+    avatar.attached? ? avatar : "icons/ComunidadeImagePerfilPlaceHolder.svg"
+  end
 
   def last_activity
     postagem_recente = postagens.order(updated_at: :desc).first

@@ -33,7 +33,11 @@
       <span class="notification-badge">1</span>
     </a>
     <div id="avatar-button" class="avatar-container">
-      <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "User Avatar", :class => "avatar") %>
+      <% if helpers.current_usuario.avatar.attached? %>
+        <%= image_tag helpers.current_usuario.avatar, :alt => "User Avatar", :class => "avatar" %>
+      <% else %>
+        <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "User Avatar", :class => "avatar") %>
+      <% end %>
     </div>
     <!-- Menu Dropdown -->
     <div id="dropdown-menu" class="dropdown-menu hidden">

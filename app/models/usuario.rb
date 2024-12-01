@@ -13,11 +13,17 @@ class Usuario < ApplicationRecord
   has_many :seguidores, class_name: "Seguindo", foreign_key: "seguidor_id"
   has_many :notificacoes, class_name: "Notificacao", foreign_key: "usuario_id"
 
+  has_one_attached :avatar
+
   has_many :seguindo_usuarios, through: :seguindo, source: :seguidor
   has_many :seguidores_usuarios, through: :seguidores, source: :usuario
 
   validates :nome, presence: { message: "Nome é obrigatório." }
   validates :username, presence: { message: "Username é obrigatório." }
+
+  def imagem_or_default
+    avatar.attached? ? avatar : "icons/PerfilImagePlaceHolder.svg"
+  end
 
   def friends
     self.seguindo_usuarios.select { |friend| friend.seguindo_usuarios.include?(self) }

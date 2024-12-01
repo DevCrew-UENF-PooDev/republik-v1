@@ -23,6 +23,17 @@
             is_field_invalid: @comunidade.errors[:descricao].any?,
             auto_complete: "descricao"
         ) %>
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "avatar",
+            label: "Avatar da Comunidade",
+            errors_messages: @comunidade.errors["avatar"],
+            placeholder: "Avatar",
+            type: "file_field",
+            value: @comunidade.send("avatar"),
+            is_field_invalid: @comunidade.errors[:avatar].any?,
+            auto_complete: "avatar"
+        ) %>
     </div>
     <%= render Atoms::CustomButton::CustomButtonComponent.new(name: "Criar Comunidade") %>
 <% end %>

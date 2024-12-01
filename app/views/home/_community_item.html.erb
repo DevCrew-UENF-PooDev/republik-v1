@@ -1,6 +1,6 @@
 <div id="community-<%= community.id %>" class="item">
   <%= link_to comunidade_path(community.id), class: "info" do %>
-    <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar da Comunidade #{community.nome}", :class => "avatar") %>
+    <%= image_tag community.imagem_or_default, :alt => "Avatar da Comunidade #{community.nome}", :class => "avatar" %>
     <p><%= community.nome %></p>
     <span class="truncate"><%= t("community_participation_status.#{community.participation_status(current_usuario)}") %></span>
     <p class="last-activity"><%= community.last_activity %></p>

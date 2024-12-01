@@ -12,7 +12,6 @@
             is_field_invalid: @postagem.errors[:titulo].any?,
             auto_complete: "titulo"
         ) %>
-        <!-- Preciso criar um customizado para isso -->
         <%= render Molecules::FormField::FormFieldComponent.new(
             f: form,
             name: "conteudo",
@@ -35,6 +34,18 @@
             is_field_invalid: @postagem.errors[:comunidade_id].any?,
             options: [["Nenhuma (Meu perfil)", nil]] + @comunidades_participadas.map { |c| [c.nome, c.id] },
             auto_complete: "comunidade"
+        ) %>
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "imagens",
+            label: "Imagens",
+            errors_messages: @postagem.errors["imagens"],
+            placeholder: "Imagens do Post",
+            type: "file_field",
+            value: @postagem.send("imagens"),
+            is_field_invalid: @postagem.errors[:comunidade_id].any?,
+            auto_complete: "imagens",
+            multiple: true,
         ) %>
     </div>
     <%= render Atoms::CustomButton::CustomButtonComponent.new(name: "Criar Postagem") %>

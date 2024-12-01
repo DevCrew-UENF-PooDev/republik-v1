@@ -11,9 +11,17 @@ class PostagensController < ApplicationController
     end
   end
 
+  def destroy
+    @post = Postagem.find(params[:id])
+    if @post
+      @post.delete_post(current_usuario)
+    end
+    redirect_to root_path
+  end
+
   private
 
   def params_postagem
-    params.require(:postagem).permit(:titulo, :conteudo)
+    params.require(:postagem).permit(:titulo, :conteudo, imagens: [])
   end
 end

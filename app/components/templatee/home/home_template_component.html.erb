@@ -9,7 +9,7 @@
       <div class="sidebar-section">
         <% if helpers.current_usuario.friends.present? %>
           <% helpers.current_usuario.friends.each do |friend| %>
-            <%= render partial: "home/friend_item", locals: { user: friend, current_usuario: helperrs.current_usuario } %>
+            <%= render partial: "home/friend_item", locals: { user: friend, current_usuario: helpers.current_usuario } %>
           <% end %>
         <% else %>
           <p class="not-found">Você não possui nenhum amigo.</p>
@@ -32,13 +32,23 @@
         <div class="post-card">
           <!-- Cabeçalho -->
           <div class="post-header">
-            <%= image_tag("icons/ComunidadeImagePerfilPlaceHolder.svg", :alt => "Icone Comunidade", :class => "community-icon") %>
+            <% if postagem.comunidade %>
+              <%= image_tag postagem.comunidade.imagem_or_default, alt: "Avatar da Comunidade", class: "community-icon" %>
+            <% else %>
+              <%= image_tag(postagem.usuario.imagem_or_default, :alt => "Avatar Do Usuárrio", :class => "community-icon") %>
+            <% end %>
             <div class="post-info">
               <div class="community-name"><%= postagem.comunidade.try(:nome) || "Sem comunidade" %></div>
               <div class="user-name"><%= postagem.usuario.nome %></div>
             </div>
             <div class="post-options">
-              <span class="icon-options">⋮</span>
+              <span class="icon-options post-menu-button">•••</span>
+              <div class="post-option-menu">
+                <%= button_to postagem_path(postagem.id), method: :delete, class: "option" do %>
+                  <%= helpers.inline_svg 'icons/trash.svg', alt: "Delete Post", class: "logo" %>
+                  <p>Deletar</p>
+                <% end %>
+              </div>
             </div>
           </div>
 
@@ -46,6 +56,15 @@
           <div class="post-content">
             <h1><%= postagem.titulo %></h1>
             <p><%= postagem.resumo %></p>
+            <% if postagem.imagens.attached? %>
+              <div class="imagens">
+                <% postagem.imagens.limit(2).each do |imagem| %>
+                  <%= image_tag imagem, class: "img-thumbnail" %>
+                <% end %>
+              </div>
+            <% else %>
+              <p>Nenhuma imagem anexada.</p>
+            <% end %>
           </div>
 
           <!-- Rodapé -->
@@ -78,7 +97,8 @@
             <% postagem.comentarios.each do |comentario| %>
               <div class="comment">
                 <div class="user-comment-info">
-                  <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %>
+                  <%= image_tag(comentario.usuario.imagem_or_default, :alt => "Avatar Do Usuárrio", :class => "community-icon") %>
+                  <!-- <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %> -->
                   <strong><%= comentario.nome_autor %></strong>
                   <p class="last-activity">• Realizado há <%= time_ago_in_words(comentario.updated_at) %> •</p>
                 </div>

@@ -4,6 +4,10 @@ class Postagem < ApplicationRecord
   has_many :comentarios, dependent: :destroy
   has_many :reacoes, dependent: :destroy
 
+  has_many_attached :imagens
+
+  validate :imagens_limit
+
   validates :titulo, presence: { message: "Título é obrigatório." }
   validates :conteudo, presence: { message: "Conteúdo é obrigatório." }
   validates :titulo, length: { minimum: 5, message: "O Título deve ter pelo menos 5 caracteres." }
@@ -24,7 +28,17 @@ class Postagem < ApplicationRecord
   end
 
   def total_reacoes
-    self.reacoes.count # Mudar futuramente
+    self.reacoes.count
+  end
+
+  def delete_post(user)
+    if self.usuario == user or (self.comunidade.present?() and self.comunidade.is_user_admin(user))
+      self.comentarios.destroy_all
+      self.reacoes.destroy_all
+      self.delete()
+    else
+      errors.add(:base, "Você não tem permissão para deletar esse post!")
+    end
   end
 
   def enviar_notificacao(acao, alvo)
@@ -42,5 +56,9 @@ class Postagem < ApplicationRecord
     unless comunidade.usuarios.include?(usuario)
       errors.add(:usuario, "não faz parte da comunidade")
     end
+  end
+
+  def imagens_limit
+    errors.add(:imagens, "não pode ter mais de 2 imagens") if imagens.size > 2
   end
 end
