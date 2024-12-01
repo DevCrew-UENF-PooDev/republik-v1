@@ -2,7 +2,14 @@ class HomeController < ApplicationController
   def index
     @comunidades = Comunidade.all
     @comunidades_participadas = current_usuario.comunidades
-    @postagens = Postagem.all
+    usuarios_seguidos = current_usuario.seguindo_usuarios.pluck(:id)
+
+    @postagens = Postagem.where(
+      "usuario_id = :usuario_id OR usuario_id IN (:seguindo_ids) OR comunidade_id IN (:comunidade_ids)",
+      usuario_id: current_usuario.id,
+      seguindo_ids: usuarios_seguidos,
+      comunidade_ids: @comunidades_participadas.pluck(:id)
+    ).order(created_at: :desc)
   end
 
   def search
