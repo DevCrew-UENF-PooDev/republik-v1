@@ -135,6 +135,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    method_source (1.1.0)
     mini_mime (1.1.5)
     minitest (5.25.1)
     msgpack (1.7.3)
@@ -153,6 +154,8 @@ GEM
     nokogiri (1.16.7-arm-linux)
       racc (~> 1.4)
     nokogiri (1.16.7-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.16.7-x64-mingw-ucrt)
       racc (~> 1.4)
     nokogiri (1.16.7-x86-linux)
       racc (~> 1.4)
@@ -256,6 +259,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.3.1)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -268,6 +274,7 @@ GEM
     sqlite3 (2.1.0-arm-linux-gnu)
     sqlite3 (2.1.0-arm-linux-musl)
     sqlite3 (2.1.0-arm64-darwin)
+    sqlite3 (2.1.0-x64-mingw-ucrt)
     sqlite3 (2.1.0-x86-linux-gnu)
     sqlite3 (2.1.0-x86-linux-musl)
     sqlite3 (2.1.0-x86_64-darwin)
@@ -283,8 +290,14 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2024.2)
+      tzinfo (>= 1.0.0)
     unicode-display_width (2.6.0)
     useragent (0.16.10)
+    view_component (3.17.0)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -309,6 +322,7 @@ PLATFORMS
   arm-linux-gnu
   arm-linux-musl
   arm64-darwin
+  x64-mingw-ucrt
   x86-linux
   x86-linux-gnu
   x86-linux-musl
@@ -329,11 +343,13 @@ DEPENDENCIES
   rails (~> 7.2.1)
   rubocop-rails-omakase
   selenium-webdriver
+  simple_form
   sprockets-rails
   sqlite3 (>= 1.4)
   stimulus-rails
   turbo-rails
   tzinfo-data
+  view_component
   web-console
 
 BUNDLED WITH

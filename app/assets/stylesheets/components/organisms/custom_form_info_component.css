@@ -1,0 +1,59 @@
+.form-info-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--quinary);
+    height: 100%;
+    max-width: 400px;
+    position: relative;
+    background-image: url('FormBackground.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    gap: 0.75rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Iceland', sans-serif;
+    font-size: 1.25rem;
+    text-align: center;
+    color: white;
+}
+
+.form-info-container .opacity-background {
+    position: absolute;
+    inset: 0;
+    background-color: black;
+    opacity: 0.8;
+    border-radius: 1.5rem;
+}
+
+.form-info-container .content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 2rem;
+    position: relative;
+    z-index: 10;
+    line-height: 1.3;
+}
+
+.form-info-container h1 {
+    font-family: 'Iceberg', sans-serif;
+    font-size: 3.75rem;
+    font-weight: inherit;
+}
+
+.aditional-info {
+    text-align: start;
+    position: relative;
+    z-index: 10;
+    margin-top: 0.8rem;
+}
+
+.aditional-info p {
+    margin-bottom: 0.5rem;
+}
+
+.aditional-info a {
+    color: #eeff00;
+    text-decoration: none;
+}

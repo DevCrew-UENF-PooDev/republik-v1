@@ -1,0 +1,25 @@
+<turbo-stream action="update" target="communities-result">
+  <template>
+    <% if @comunidades.any? %>
+      <% @comunidades.each do |community| %>
+        <%= render partial: "home/community_item", formats: [:html],
+          locals: { community: community, current_usuario: current_usuario } %>
+      <% end %>
+    <% else %>
+      <p class="not-found">Nenhuma comunidade contendo "<%= @query %>" foi encontrada.</p>
+    <% end %>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="update" target="users-result">
+  <template>
+    <% if @usuarios.any? %>
+      <% @usuarios.each do |user| %>
+        <%= render partial: "home/friend_item", formats: [:html],
+          locals: { user: user, current_usuario: current_usuario } %>
+      <% end %>
+    <% else %>
+      <p class="not-found">Nenhum usuário contendo "<%= @query %>" foi encontrado.</p>
+    <% end %>
+  </template>
+</turbo-stream>

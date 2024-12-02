@@ -1,0 +1,126 @@
+/* Navbar */
+.navbar {
+    position: fixed;
+    width: 100%;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 10px 20px;
+    color: #fff;
+    z-index: 100;
+  }
+  
+  /* Logotipo */
+  .navbar-logo .logo {
+    width: 50px;
+    height: auto;
+  }
+  
+  /* Ícones da navbar */
+  .navbar-icons {
+    display: flex;
+    gap: 3em;
+  }
+  
+  .icon-link {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+  }
+  a {
+    position: relative;
+  }
+  
+  .icon {
+    width: 30px;
+    height: auto;
+    filter: grayscale(100%); /* para ícones desativados */
+  }
+  
+  .icon.active {
+    filter: none; /* restaura as cores para ícone ativo */
+  }
+
+  .navbar-user {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .avatar-container {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  /* Avatar do usuário */
+  .navbar-user .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  /* Badge de notificação */
+  .notification-badge {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    background-color: red;
+    color: white;
+    font-size: 0.7em;
+    padding: 3px 6px;
+    border-radius: 50%;
+  }
+  
+  /* Dropdown menu */
+  .dropdown-menu {
+    pointer-events:none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    width: 200px;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+  }
+  
+  .dropdown-menu p {
+    font-weight: bold;
+    margin: 0 0 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .dropdown-item {
+    pointer-events:auto;
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .dropdown-item:hover {
+    color: #ddd;
+  }
+  
+  .dropdown-icon {
+    width: 20px;
+    margin-right: 10px;
+  }
+  
+  /* Controle de visibilidade */
+  .hidden {
+    display: none;
+  }

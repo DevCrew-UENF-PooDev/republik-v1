@@ -1,0 +1,24 @@
+<%= stylesheet_link_tag "components/organisms/custom_form_component" %>
+<%= form_with model: @resource, url: @on_submit[:url], local: true, html: { class: "form-container" } do |f| %>
+  <h1><%= @form_name %></h1>
+  <div class="fields">
+    <% @fields.each do |field| %>
+      <%= render Molecules::FormField::FormFieldComponent.new(
+        f: f,
+        name: field[:name],
+        label: field[:label],
+        errors_messages: @resource.errors[field[:name]],
+        placeholder: field[:placeholder],
+        type: field[:type],
+        value: @resource.send(field[:name]),
+        is_field_invalid: @resource.errors[field[:name].to_sym].any?,
+        auto_complete: field[:auto_complete]
+      ) %>
+    <% end %>
+  </div>
+  <%= render Atoms::CustomButton::CustomButtonComponent.new(name: @submit_button_name) %>
+  <div class="aditional-info">
+    <p><%= @form_aditional_info[:aditional_question] %></p>
+    <%= link_to @form_aditional_info[:aditional_link_text], @form_aditional_info[:aditional_link] %>
+  </div>
+<% end %>

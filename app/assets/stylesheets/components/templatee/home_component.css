@@ -1,0 +1,100 @@
+.main-content {
+  display: flex;
+  height: calc(100vh - 5em);
+  min-width: 550px;
+}
+
+.main-content section {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  margin-top: 5em;
+}
+
+/* Sidebar */
+.sidebar {
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border-radius: 0 5px 5px 0;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+ h1 {
+  color: #fff;
+ }
+  
+  /* Títulos */
+.sidebar h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid #555;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+  
+  /* Amigos e Comunidades */
+  .friend, .community {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+  
+/* Informações do amigo */
+.friend-info, .community-info {
+  flex-grow: 1;
+}
+
+.friend-header, .community-info .name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.status {
+  font-size: 0.9em;
+  color: #ccc;
+}
+  
+/* Indicador de status online */
+.status-indicator {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  left: 18%;
+  top: 18%;
+  border: 1px solid black;
+}
+
+.status-indicator.online {
+  background-color: #4CAF50;
+}
+  
+/* Post */
+.posts-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  margin: 0 1em;
+  gap: 1em;
+  padding-bottom: 1em;
+}

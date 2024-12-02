@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag "components/header/navbar" %>
+<div class="navbar">
+  <!-- Logotipo -->
+  <div class="navbar-logo">
+    <%= helpers.inline_svg 'icons/Logo.svg', alt: "Logo Republik", class: "logo" %>
+  </div>
+
+  <!-- Ícones de Navegação -->
+  <div class="navbar-icons">
+    <%= link_to root_path, class: "icon-link" do %>
+      <%= helpers.inline_svg 'icons/Home.svg', alt: "Home Icon", class: "icon active" %>
+    <% end %>
+    <%= link_to new_social_content_path, class: "icon-link" do %>
+      <%= helpers.inline_svg 'icons/AddIcon.svg', alt: "Criar", class: "icon" %>
+    <% end %>
+
+    <%= link_to search_path, class: "icon-link" do %>
+      <%= helpers.inline_svg 'icons/search.svg', alt: "Buscar", class: "icon" %>
+    <% end %>
+    <a href="#" class="icon-link">
+      <%= helpers.inline_svg 'icons/MessageIcon.svg', alt: "Messages", class: "icon" %>
+      <span class="notification-badge">3</span>
+    </a>
+    <%= link_to comunidade_path(0), class: "icon-link" do %>
+      <%= helpers.inline_svg 'icons/FriendsIcon.svg', alt: "Friends", class: "icon" %>
+    <% end %>
+  </div>
+
+  <!-- Avatar do Usuário -->
+  <div class="navbar-user">
+    <a href="#">
+      <%= helpers.inline_svg 'icons/NotificationIcon.svg', alt: "Notification Icon", class: "icon" %>
+      <span class="notification-badge">1</span>
+    </a>
+    <div id="avatar-button" class="avatar-container">
+      <%= image_tag helpers.current_usuario.imagem_or_default, :alt => "User Avatar", :class => "avatar" %>
+    </div>
+    <!-- Menu Dropdown -->
+    <div id="dropdown-menu" class="dropdown-menu hidden">
+      <p>Olá, <%= helpers.current_usuario.nome %></p>
+      <a href="#" class="dropdown-item">
+        <%= helpers.inline_svg 'icons/PersonIcon.svg', alt: "Meu Perfil", class: "dropdown-icon" %>
+        Meu Perfil
+      </a>
+      <a href="#" class="dropdown-item">
+        <%= helpers.inline_svg 'icons/SettingsIcon.svg', alt: "Configurações", class: "dropdown-icon" %>
+        Configurações
+      </a>
+      <%= link_to destroy_usuario_session_path, data: {turbo_method: :delete}, class: "dropdown-item" do %>
+        <%= helpers.inline_svg 'icons/LogoutIcon.svg', alt: "Sair", class: "dropdown-icon" %>
+        Sair
+      <% end %>
+    </div>
+  </div>
+</div>

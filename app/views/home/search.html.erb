@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag "pages/form_alt_button" %>
+<%= stylesheet_link_tag "pages/search_page" %>
+
+<div class="main-container">
+  <%= render(Organisms::Header::NavbarComponent.new()) %>
+  <div class="search-main-container">
+    <%= form_with url: perform_search_path, method: :get, remote: true, class: "search-form", data: { turbo_stream: true }, id: "search-form" do |form| %>
+      <%= render Molecules::FormField::FormFieldComponent.new(
+        f: form,
+        name: "query",
+        label: "Buscar",
+        errors_messages: [],
+        placeholder: "Buscar...",
+        type: "text_field",
+        value: "",
+        is_field_invalid: false,
+        auto_complete: "query",
+        id: "search-query"
+      ) %>
+    <% end %>
+    
+    <div class="results-container">
+      <div class="form-buttons">
+        <button id="show-communities-results" class="btn selected">Comunidade</button>
+        <button id="show-users-results" class="btn">Usuários</button>
+      </div>
+      <div id="search-results-container">
+        <div id="communities-result">
+          <% if @comunidades.any? %>
+            <% @comunidades.each do |community| %>
+              <%= render partial: "home/community_item", locals: { community: community, current_usuario: current_usuario } %>
+            <% end %>
+          <% else %>
+            <p class="not-found">Nenhuma comunidade contendo "<%= @query %>" foi encontrada.</p>
+          <% end %>
+        </div>
+        <div class="vl"></div>
+        <div id="users-result">
+          <% if @usuarios.any? %>
+            <% @usuarios.each do |user| %>
+              <%= render partial: "home/friend_item", locals: { user: user, current_usuario: current_usuario } %>
+            <% end %>
+          <% else %>
+            <p class="not-found">Nenhum usuário contendo "<%= @query %>" foi encontrado.</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<a href="#search-query" class="go-back-to-top">
+  <%= inline_svg 'icons/DoubleArrowUp.svg', alt: "Messages", class: "icon" %>
+</a>

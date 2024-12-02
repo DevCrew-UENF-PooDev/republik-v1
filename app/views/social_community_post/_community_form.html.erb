@@ -1,0 +1,39 @@
+<%= form_with(model: @comunidade, url: create_community_path, method: :post, remote: true, id: "community-form-f", data: { turbo_stream: true }) do |form| %>
+    <h1>Crie uma Comunidade</h1>
+    <div class="fields">
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "nome",
+            label: "Nome",
+            errors_messages: @comunidade.errors["nome"],
+            placeholder: "Nome da Comunidade",
+            type: "text_field",
+            value: @comunidade.send("nome"),
+            is_field_invalid: @comunidade.errors[:nome].any?,
+            auto_complete: "nome"
+        ) %>
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "descricao",
+            label: "Descrição",
+            errors_messages: @comunidade.errors["descricao"],
+            placeholder: "Descrição da Comunidade",
+            type: "text_area",
+            value: @comunidade.send("descricao"),
+            is_field_invalid: @comunidade.errors[:descricao].any?,
+            auto_complete: "descricao"
+        ) %>
+        <%= render Molecules::FormField::FormFieldComponent.new(
+            f: form,
+            name: "avatar",
+            label: "Avatar da Comunidade",
+            errors_messages: @comunidade.errors["avatar"],
+            placeholder: "Avatar",
+            type: "file_field",
+            value: @comunidade.send("avatar"),
+            is_field_invalid: @comunidade.errors[:avatar].any?,
+            auto_complete: "avatar"
+        ) %>
+    </div>
+    <%= render Atoms::CustomButton::CustomButtonComponent.new(name: "Criar Comunidade") %>
+<% end %>

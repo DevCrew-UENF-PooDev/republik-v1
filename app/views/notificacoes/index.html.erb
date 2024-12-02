@@ -1,0 +1,7 @@
+<h1>Minhas Notificações</h1>
+<% @notificacoes.each do |notificacao| %>
+  <div class="notification">
+    <%= notificacao.acao %>
+    <%= button_to 'Marcar como lida', marcar_como_lida_notificaco_path(notificacao), method: :patch %>
+  </div>
+<% end %>

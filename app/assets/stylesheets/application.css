@@ -10,6 +10,91 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+
  *= require_self
  */
+
+:root {
+    --primary: #18191a;
+    --quaternary: #014dca;
+    --quinary: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+    height: 100%;
+    background-color: var(--primary);
+    min-width: 320px;
+}
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    margin: 0;
+    padding: 0;
+
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Cards Items */
+
+.item {
+    display: flex;
+    gap: 1em;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s;
+    padding: 10px;
+}
+
+.avatar {
+    width: 4.5em;
+    height: 4.5em;
+    border-radius: 50%;
+}
+
+.item .info {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    position: relative;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+.not-found {
+    text-align: center;
+}
+
+.item .info span {
+    color: #bbb;
+    width: 100%;
+    font-size: 0.9em;
+    margin-bottom: 0.1em;
+}
+
+.item.selected,
+.item:hover {
+    background-color: black;
+    border-radius: 20px;
+}
+
+.item .confirmation-buttons {
+    display: flex;
+    justify-content: space-between;
+    z-index: 1;
+    gap: 0.5em;
+}
+
+/* Reconhece todos os css nesse diretório */
+/* *= require_tree . */ 

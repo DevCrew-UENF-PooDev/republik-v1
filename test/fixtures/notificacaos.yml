@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  usuario: one
+  acao: MyString
+  alvo_id: 1
+  alvo_type: MyString
+  lida: false
+
+two:
+  usuario: two
+  acao: MyString
+  alvo_id: 1
+  alvo_type: MyString
+  lida: false

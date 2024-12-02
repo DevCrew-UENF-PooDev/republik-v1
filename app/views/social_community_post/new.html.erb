@@ -1,0 +1,19 @@
+<%= stylesheet_link_tag "pages/form" %>
+<%= stylesheet_link_tag "pages/form_alt_button" %>
+<%= render(Organisms::Header::NavbarComponent.new()) %>
+<div class="outer-container">
+    <div class="main-container">
+        <div class="form-buttons">
+            <button id="show-post-form" class="btn selected">Criar Postagem</button>
+            <button id="show-community-form" class="btn">Criar Comunidade</button>
+        </div>
+        <div class="form-body-container">
+            <div class="form-container" id="post-form">
+                <%= render partial: "social_community_post/post_form", locals: { postagem: @postagem, comunidades_participadas: @comunidades_participadas } %>
+            </div>
+            <div class="form-container" id="community-form" style="display: none;">
+                <%= render partial: "social_community_post/community_form", locals: { comunidade: @comunidade } %>
+            </div>
+        </div>
+    </div>
+</div>

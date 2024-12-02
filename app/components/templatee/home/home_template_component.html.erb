@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag "pages/form_alt_button" %>
+<%= stylesheet_link_tag "components/templatee/home_component" %>
+
+<div class="main-content">
+  <%= render(Organisms::Header::NavbarComponent.new()) %>
+  <section>
+    <div class="sidebar">
+      <h2>Amigos</h2>
+      <!-- <div class="sidebar-section"> -->
+        <% if helpers.current_usuario.friends.present? %>
+          <% helpers.current_usuario.friends.each do |friend| %>
+            <%= render partial: "home/friend_item", locals: { user: friend, current_usuario: helpers.current_usuario } %>
+          <% end %>
+        <% else %>
+          <p class="not-found">Você não possui nenhum amigo.</p>
+        <% end %>
+      <!-- </div> -->
+
+      <h2>Comunidades</h2>
+      <% if @comunidades_participadas.present? %>
+        <% @comunidades_participadas.each do |community| %>
+          <%= render partial: "home/community_item", locals: { community: community, current_usuario: helpers.current_usuario } %>
+        <% end %>
+      <% else %>
+        <p class="not-found">Você não está participando de nenhuma comunidade.</p>
+      <% end %>
+    </div>
+
+    <div class="posts-container">
+      <% @posts.each do |postagem| %>
+        <%= render Organisms::Post::PostComponent.new(post: postagem) %>
+      <% end %>
+    </div>
+  </section>
+</div>

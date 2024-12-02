@@ -1,0 +1,20 @@
+<%= stylesheet_link_tag "components/templatee/form_w_info_component" %>
+<div class="outer-container">
+    <div class="main-container">
+      <%= render(Organisms::CustomFormInfo::CustomFormInfoComponent.new(aditional_info: {
+        aditional_link: form_aditional_info[:aditional_link],
+        aditional_link_text: form_aditional_info[:aditional_link_text],
+        aditional_question: form_aditional_info[:aditional_question]
+      })) %>
+  
+      <%= render(Organisms::CustomForm::CustomFormComponent.new(
+        fields: fields,
+        on_submit: on_submit,
+        submit_button_name: submit_button_name,
+        form_name: form_name,
+        form_aditional_info: form_aditional_info,
+        resource: resource
+      )) %>
+    </div>
+  </div>
+  

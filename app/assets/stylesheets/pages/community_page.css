@@ -1,0 +1,77 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    min-width: 320px;
+}
+
+.main-container .community-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5em;
+    gap: 1em;
+}
+
+.main-container .community-content .users,
+.main-container .community-content .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: calc(100vh - 5em);
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    flex-grow: 0.25;
+}
+
+.main-container .community-content section {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    flex-grow: 0.45;
+    overflow: auto;
+    height: calc(100vh - 5em);
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.main-container .community-content .sidebar .community {
+
+}
+
+.main-container .community-content .sidebar .avatar {
+    width: 40px;
+    height: 40px;
+}
+
+.main-container .community-content section .info-container {
+    display: flex;
+    background-color: #2D2B2B;
+    border-radius: 10px;
+    padding: 1em;
+    gap: 1em;
+    align-items: center;
+    color: white;
+}
+
+.main-container .community-content section .info-container .avatar {
+    width: 5em;
+}
+
+.main-container .community-content section .info-container span {
+    font-weight: lighter;
+}
+
+.main-container .community-content section .info-container span span {
+    color: #007AFF;
+}
+
+.main-container .community-content .users hr {
+    border: 1px solid white;
+    opacity: 0.2;
+}

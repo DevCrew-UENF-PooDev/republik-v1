@@ -1,24 +1,36 @@
-# README
+# Republik
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Pré-requisitos
 
-Things you may want to cover:
+Antes de começar, certifique-se de ter os seguintes itens instalados:
 
-* Ruby version
+-   [Ruby](https://www.ruby-lang.org/en/) 3.3.4+ ou superior
+-   [Rails](https://rubyonrails.org/) 7.2.1+
 
-* System dependencies
+## Inicialização do Projeto
 
-* Configuration
+### 1. Clone o repositório
 
-* Database creation
+```bash
+git clone ...
+cd ...
+```
 
-* Database initialization
+### 2. Instale as dependências do projeto
 
-* How to run the test suite
+```bash
+bundle install
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+### 3. Configure o banco de dados
 
-* Deployment instructions
+```bash
+rails db:create
+rails db:migrate
+```
 
-* ...
+### 4. Rodar as seeds
+
+```bash
+rails db:seed
+```

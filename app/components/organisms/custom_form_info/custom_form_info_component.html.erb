@@ -1,0 +1,16 @@
+<%= stylesheet_link_tag "components/organisms/custom_form_info_component" %>
+<div class="form-info-container">
+    <div class="opacity-background"></div>
+    <div class="content-container">
+        <h1>Republik</h1>
+        <span>Por universitários, para universitários</span>
+        <p>
+        Bem-vindo à Republik, o espaço onde o conhecimento encontra a amizade. Aqui, você pode se conectar com colegas de curso, compartilhar experiências, colaborar em projetos e expandir sua rede de contatos. Juntos, vamos além da sala de aula, criando um ambiente onde cada interação é uma oportunidade de crescimento. Conecte-se, aprenda e cresça com a gente!
+        </p>
+    </div>
+    <div class="aditional-info">
+        <p><%= aditional_info[:aditional_question] %></p>
+        <%= link_to aditional_info[:aditional_link_text], aditional_info[:aditional_link] %>
+    </div>
+</div>
+  

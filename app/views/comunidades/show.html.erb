@@ -1,0 +1,40 @@
+<%= stylesheet_link_tag "pages/community_page" %>
+<%= stylesheet_link_tag "pages/form_alt_button" %>
+<div class="main-container">
+  <%= render(Organisms::Header::NavbarComponent.new()) %>
+  <div class="community-content">
+    <div class="sidebar">
+      <% @comunidades_participadas.each do |community| %>
+        <%= render partial: "home/community_item", locals: { community: community, current_usuario: current_usuario } %>
+      <% end %>
+    </div>
+    <section>
+      <% if @comunidade.present? %>
+        <div class="info-container">
+          <%= image_tag @comunidade.imagem_or_default, :alt => "User Avatar", :class => "avatar" %>
+          <div class="info">
+            <h1><%= @comunidade.nome %></h1>
+            <span>Administrado por: <span><%= @comunidade.administrador.nome %></span></span>
+          </div>
+        </div>
+        <div class="info-container">
+          <p><%= @comunidade.resumo %></p>
+        </div>
+      <% else %>
+        <div class="info-container">
+          <p>Nenhuma comunidade disponível</p>
+        </div>
+      <% end %>
+      <% @posts.each do |postagem| %>
+        <%= render Organisms::Post::PostComponent.new(post: postagem) %>
+      <% end %>
+    </section>
+    <div class="users">
+      <h1>Membros</h1>
+      <hr>
+      <% @usuarios.each do |usuario| %>
+        <%= render partial: "home/friend_item", locals: { user: usuario, current_usuario: current_usuario } %>
+      <% end %>
+    </div>
+  </div>
+</div>

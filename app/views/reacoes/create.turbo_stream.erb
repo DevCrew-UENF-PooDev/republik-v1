@@ -1,0 +1,14 @@
+<turbo-stream target="post-reactions-<%= @postagem.id %>" action="replace">
+  <template>
+    <div id="post-reactions-<%= @postagem.id %>" class="bubble-container <%= @postagem.tipo_reacao_do_usuario(current_usuario) %>">
+        <%= button_to postagem_reacoes_path(postagem_id: @postagem.id, tipo: 'like'), method: :post, remote: true, class: "reaction-button" do %>
+            <%= inline_svg 'icons/heart-fill.svg', alt: "Upvote Icon", class: "upvote" %>
+        <% end %>
+        <span><%= @postagem.total_upvotes %></span>
+        <%= button_to postagem_reacoes_path(postagem_id: @postagem.id, tipo: 'dislike'), method: :post, remote: true, class: "reaction-button" do %>
+            <%= inline_svg 'icons/arrow-through-heart-fill.svg', alt: "Downvote Icon", class: "downvote" %>
+        <% end %>
+        <span><%= @postagem.total_downvotes %></span>
+    </div>
+  </template>
+</turbo-stream>

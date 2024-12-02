@@ -1,0 +1,6 @@
+<turbo-stream action="replace" target="community-<%= @comunidade.id %>">
+  <template>
+    <%= render partial: "home/community_item", formats: [:html], 
+      locals: { community: @comunidade, current_usuario: current_usuario } %>
+  </template>
+</turbo-stream>

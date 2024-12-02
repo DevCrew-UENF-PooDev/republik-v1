@@ -1,0 +1,6 @@
+<turbo-stream action="replace" target="user-<%= @desired_friend.id %>">
+  <template>
+    <%= render partial: "home/friend_item", formats: [:html],
+      locals: { user: @desired_friend, current_usuario: current_usuario } %>
+  </template>
+</turbo-stream>

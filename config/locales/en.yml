@@ -28,4 +28,13 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  friend_status:
+    friends: "Vocês já são amigos"
+    request_received: "Enviou um pedido de amizade!"
+    request_sent: "Pedido de Amizade Enviado!"
+    not_friends: "Ainda não é seu amigo!"
+  community_participation_status:
+    community_not_participate: "Você ainda não faz parte dessa comunidade."
+    community_admin: "Você é o admin dessa comunidade!"
+    community_user: "Você participa dessa comunidade!"
+
