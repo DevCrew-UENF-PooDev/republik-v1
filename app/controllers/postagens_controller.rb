@@ -3,14 +3,6 @@ class PostagensController < ApplicationController
     @postagem = Postagem.new
   end
 
-  def create
-    postagem = current_usuario.postagens.create(params_postagem)
-    postagem.data_publicacao = Time.now
-    if postagem.save
-      redirect_to root_path
-    end
-  end
-
   def destroy
     @post = Postagem.find(params[:id])
     if @post
