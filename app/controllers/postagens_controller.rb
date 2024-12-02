@@ -16,7 +16,7 @@ class PostagensController < ApplicationController
     if @post
       @post.delete_post(current_usuario)
     end
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private

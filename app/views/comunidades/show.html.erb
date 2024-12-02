@@ -26,6 +26,7 @@
         </div>
       <% end %>
       <% @posts.each do |postagem| %>
+        <%= render Organisms::Post::PostComponent.new(post: postagem) %>
       <% end %>
     </section>
     <div class="users">

@@ -1,29 +1,24 @@
 .main-content {
   display: flex;
-  flex-direction: column;
-  gap: 1em;
-  height: 100vh;
+  height: calc(100vh - 5em);
   min-width: 550px;
 }
 
 .main-content section {
   display: flex;
   flex-grow: 1;
-  gap: 1em;
   height: 100%;
   margin-top: 5em;
 }
 
 /* Sidebar */
 .sidebar {
-  position: fixed;
-  height: calc(100% - 5em);
-  width: 300px;
+  height: 100%;
   background-color: #333;
   color: #fff;
   padding: 20px;
   font-family: Arial, sans-serif;
-  border-radius: 10px;
+  border-radius: 0 5px 5px 0;
   overflow: auto;
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
@@ -34,17 +29,12 @@
  }
   
   /* Títulos */
-  .sidebar h2 {
-    font-size: 1.5em;
-    border-bottom: 1px solid #555;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-  }
-  
-  /* Seções de amigos e comunidades */
-  .sidebar-section {
-    margin-bottom: 20px;
-  }
+.sidebar h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid #555;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
   
   /* Amigos e Comunidades */
   .friend, .community {
@@ -54,284 +44,57 @@
     position: relative;
   }
   
-  .avatar {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 15px;
-  }
-  
-  /* Informações do amigo */
-  .friend-info, .community-info {
-    flex-grow: 1;
-  }
-  
-  .friend-header, .community-info .name {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .name {
-    font-weight: bold;
-    font-size: 1.1em;
-  }
-  
-  .status {
-    font-size: 0.9em;
-    color: #ccc;
-  }
-  
-  /* Indicador de status online */
-  .status-indicator {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    left: 18%;
-    top: 18%;
-    border: 1px solid black;
-  }
-  
-  .status-indicator.online {
-    background-color: #4CAF50;
-  }
-  
-/* Post */
-
-.posts-container {
-  margin-left: calc(300px + 1em);
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 2em;
-  margin-right: 1em;
-}
-
-/* Estilos do Card da Postagem */
-.post-card {
-  background-color: #333;
-  color: #fff;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  font-family: Arial, sans-serif;
-}
-
-.post-card:last-child {
-  margin-bottom: 2em;
-}
-
-/* Cabeçalho */
-.post-header {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #555;
-  padding-bottom: 8px;
-}
-
-.community-icon {
-  width: 40px;
-  height: 40px;
+.avatar {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  margin-right: 10px;
 }
-
-.post-info {
+  
+/* Informações do amigo */
+.friend-info, .community-info {
   flex-grow: 1;
 }
 
-.community-name {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.user-name {
-  font-size: 14px;
-  color: #bbb;
-}
-
-.post-options {
-  color: #888;
-  cursor: pointer;
-}
-
-/* Conteúdo da Postagem */
-.post-content {
-  margin-top: 12px;
-}
-
-.post-content h1 {
-  text-align: center;
-}
-
-.post-content p {
-  margin: 0 0 8px;
-  font-size: 14px;
-  color: #ddd;
-}
-
-/* Rodapé */
-.post-footer {
+.friend-header, .community-info .name {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid #555;
-  padding-top: 8px;
-  margin-top: 12px;
 }
 
-.post-reactions {
-  display: flex;
-  gap: 8px;
+.name {
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
-.reaction-button, .comment-button {
-  background: none;
-  color: #ddd;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
+.status {
+  font-size: 0.9em;
+  color: #ccc;
 }
-
-.reaction-button:hover, .comment-button:hover {
-  color: #fff;
-}
-
-.post-stats {
-  font-size: 14px;
-  color: #888;
-}
-
-
-.form-control {
-  min-width: 100%;
-  min-height: 30px;
-  max-height: 100px;
-  padding: 8px;
-  border-radius: 5px;
-  background-color: transparent;
-  border: 1px solid white;
-  outline: none;
-  color: white;
-}
-
-.search-form {
-  margin-bottom: 20px;
-}
-
-.post-comments textarea {
-  min-width: 100%;
-  min-height: 60px;
-  max-height: 100px;
-  padding: 8px;
-  border-radius: 5px;
-  background-color: transparent;
-  border: 1px solid white;
-  outline: none;
-  color: white;
-  resize: vertical;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.post-comments input, .post-comments svg {
+  
+/* Indicador de status online */
+.status-indicator {
   position: absolute;
-  width: 24px;
-  height: auto;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  left: 18%;
+  top: 18%;
+  border: 1px solid black;
 }
 
-.post-comments svg {
-  pointer-events: none;
+.status-indicator.online {
+  background-color: #4CAF50;
 }
-
-.post-comments input {
-  opacity: 0;
-}
-
-.comment-form {
-  position: relative;
-}
-
-.comment .comment-content {
-  padding: 0 1em;
-  border-bottom: 1px solid #555;
-  padding-bottom: 8px;
-}
-
-.comment .user-comment-info {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  gap: 1em;
-}
-
-.comment .user-comment-info .avatar {
-  width: 32px;
-  margin-right: 0px;
-}
-
-.comment .user-comment-info .last-activity {
-  color: #E07400;
-}
-
-.post-options {
-  position: relative;
-}
-
-.post-option-menu {
-  display: none;
-}
-
-.show .post-option-menu{
+  
+/* Post */
+.posts-container {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  right: 100%;
-  top: 70%;
-  background-color: #333;
-  color: white;
-  filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 1));
-  border-radius: 10px;
-}
-
-.option {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  padding: 10px 60px 10px 20px;
-  transition: background-color 0.2s;
-  background-color: transparent;
-  cursor: pointer;
-  color: white;
-}
-
-.icon-options {
-  padding: 10px;
-  color: white;
-  border-radius: 50%;
-  transition: background-color 0.2s;
-}
-
-.icon-options:hover {
-  background-color: gray;
-}
-
-.option:first-child {
-  border-radius: 10px 10px 0 0;
-}
-
-.option:last-child {
-  border-radius: 0 0 10px 10px;
-}
-
-.option:only-of-type {
-  border-radius: 10px;
-}
-
-.option:hover {
-  background-color: gray;
+  width: 100%;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  margin: 0 1em;
+  gap: 1em;
+  padding-bottom: 1em;
 }

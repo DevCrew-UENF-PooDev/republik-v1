@@ -34,6 +34,10 @@
     flex-direction: column;
     gap: 1em;
     flex-grow: 0.45;
+    overflow: auto;
+    height: calc(100vh - 5em);
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .main-container .community-content .sidebar .community {

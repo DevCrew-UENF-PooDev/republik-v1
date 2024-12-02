@@ -1,0 +1,80 @@
+<%= stylesheet_link_tag "components/organisms/post" %>
+<div class="post-container">
+    <!-- Post Header -->
+    <div class="post-header">
+        <div class="author-info">
+            <% if post.comunidade %>
+                <%= image_tag post.comunidade.imagem_or_default, alt: "Avatar da Comunidade", class: "community-icon" %>
+            <% else %>
+                <%= image_tag(post.usuario.imagem_or_default, :alt => "Avatar Do Usuárrio", :class => "community-icon") %>
+            <% end %>
+            <div class="post-info">
+            <p class="community-name"><%= post.comunidade.try(:nome) || "Sem comunidade" %></p>
+            <p class="user-name"><%= post.usuario.nome %></p>
+            </div>
+        </div>
+        <div class="post-options">
+          <span class="icon-options post-menu-button">•••</span>
+          <div class="post-option-menu">
+            <%= button_to postagem_path(post.id), method: :delete, class: "option" do %>
+              <%= helpers.inline_svg 'icons/trash.svg', alt: "Delete Post", class: "logo" %>
+              <p>Deletar</p>
+            <% end %>
+          </div>
+        </div>
+    </div>
+
+    <!-- Post Content -->
+    <div class="post-content">
+        <h1><%= post.titulo %></h1>
+        <p><%= post.resumo %></p>
+        <% if post.imagens.attached? %>
+          <div class="images">
+            <% post.imagens.limit(2).each do |imagem| %>
+              <%= image_tag imagem, class: "img-thumbnail" %>
+            <% end %>
+          </div>
+        <% end %>
+    </div>
+
+    <!-- Post Footer -->
+    <div class="post-footer">
+        <div class="status-container">
+            <div id="post-reactions-<%= post.id %>" class="bubble-container <%= post.tipo_reacao_do_usuario(helpers.current_usuario) %>">
+                <%= button_to postagem_reacoes_path(postagem_id: post.id, tipo: 'like'), method: :post, remote: true, class: "reaction-button" do %>
+                    <%= helpers.inline_svg 'icons/heart-fill.svg', alt: "Upvote Icon", class: "upvote" %>
+                <% end %>
+                <span><%= post.total_upvotes %></span>
+                <%= button_to postagem_reacoes_path(postagem_id: post.id, tipo: 'dislike'), method: :post, remote: true, class: "reaction-button" do %>
+                    <%= helpers.inline_svg 'icons/arrow-through-heart-fill.svg', alt: "Downvote Icon", class: "downvote" %>
+                <% end %>
+                <span><%= post.total_downvotes %></span>
+            </div>
+            <div class="bubble-container comment-button" data-post-id="<%= post.id %>">
+                <span class="">💬 <%= post.total_comentarios %></span>
+            </div>
+        </div>
+
+        <!-- Comentários -->
+        <div class="post-comments">
+            <%= form_with(model: [post, Comentario.new], local: true) do |form| %>
+              <div class="comment-form" data-post-id="<%= post.id %>" style="display: none;">
+                <%= form.text_area :conteudo, class: "form-control", placeholder: "Adicionar um comentário" %>
+                <%= helpers.inline_svg 'icons/send.svg', alt: "Submit Message", class: "logo" %>
+                <%= form.submit "Submit", :type => :image, :src => image_path("icons/send.svg") %>
+              </div>
+            <% end %>
+            <% post.comentarios.each do |comentario| %>
+              <div class="comment">
+                <div class="user-comment-info">
+                  <%= image_tag(comentario.usuario.imagem_or_default, :alt => "Avatar Do Usuário", :class => "avatar") %>
+                  <strong><%= comentario.nome_autor %></strong>
+                  <p class="last-activity">• Realizado há <%= time_ago_in_words(comentario.updated_at) %> •</p>
+                </div>
+                <p class="comment-content"><%= comentario.conteudo %></p>
+                <hr>
+              </div>
+            <% end %>
+        </div>
+    </div>
+</div>

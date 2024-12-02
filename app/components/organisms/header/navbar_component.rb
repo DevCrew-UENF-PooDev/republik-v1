@@ -1,4 +1,4 @@
 class Organisms::Header::NavbarComponent < ViewComponent::Base
-  def initialize()
+  def initialize
   end
 end

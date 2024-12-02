@@ -31,6 +31,18 @@ class Postagem < ApplicationRecord
     self.reacoes.count
   end
 
+  def tipo_reacao_do_usuario(usuario)
+    reacoes.find_by(usuario: usuario)&.tipo
+  end
+
+  def total_upvotes
+    reacoes.where(tipo: "like").count
+  end
+
+  def total_downvotes
+    reacoes.where(tipo: "dislike").count
+  end
+
   def delete_post(user)
     if self.usuario == user or (self.comunidade.present?() and self.comunidade.is_user_admin(user))
       self.comentarios.destroy_all

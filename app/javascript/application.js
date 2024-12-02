@@ -23,9 +23,15 @@ function isInCreationCommunityPostPage()
   return window.location.pathname === "/social_community_post/new"
 } 
 
+function isInCommunityPage()
+{
+  return window.location.pathname.match("/comunidades")
+} 
+
+
 function toggleComment()
 {
-  if(!isInHome()) return;
+  if(!isInHome() && !isInCommunityPage()) return;
 
   document.querySelectorAll(".comment-button").forEach(function(button) {
       button.addEventListener("click", function() {
@@ -66,7 +72,6 @@ function togglePostDropdown()
     const button = dropdown.querySelector(".post-menu-button");
     button.addEventListener("click", () => {
       dropdown.classList.toggle("show");
-      console.log("e")
     });
 
     // Fecha o dropdown se clicar fora dele

@@ -14,7 +14,7 @@ class ComentariosController < ApplicationController
     else
       flash[:alert] = "Não foi possível adicionar o comentário."
     end
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private

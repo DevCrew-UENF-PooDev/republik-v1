@@ -6,7 +6,7 @@
   <section>
     <div class="sidebar">
       <h2>Amigos</h2>
-      <div class="sidebar-section">
+      <!-- <div class="sidebar-section"> -->
         <% if helpers.current_usuario.friends.present? %>
           <% helpers.current_usuario.friends.each do |friend| %>
             <%= render partial: "home/friend_item", locals: { user: friend, current_usuario: helpers.current_usuario } %>
@@ -14,7 +14,7 @@
         <% else %>
           <p class="not-found">Você não possui nenhum amigo.</p>
         <% end %>
-      </div>
+      <!-- </div> -->
 
       <h2>Comunidades</h2>
       <% if @comunidades_participadas.present? %>
@@ -26,88 +26,9 @@
       <% end %>
     </div>
 
-    <!-- Separar depois em Post -->
     <div class="posts-container">
       <% @posts.each do |postagem| %>
-        <div class="post-card">
-          <!-- Cabeçalho -->
-          <div class="post-header">
-            <% if postagem.comunidade %>
-              <%= image_tag postagem.comunidade.imagem_or_default, alt: "Avatar da Comunidade", class: "community-icon" %>
-            <% else %>
-              <%= image_tag(postagem.usuario.imagem_or_default, :alt => "Avatar Do Usuárrio", :class => "community-icon") %>
-            <% end %>
-            <div class="post-info">
-              <div class="community-name"><%= postagem.comunidade.try(:nome) || "Sem comunidade" %></div>
-              <div class="user-name"><%= postagem.usuario.nome %></div>
-            </div>
-            <div class="post-options">
-              <span class="icon-options post-menu-button">•••</span>
-              <div class="post-option-menu">
-                <%= button_to postagem_path(postagem.id), method: :delete, class: "option" do %>
-                  <%= helpers.inline_svg 'icons/trash.svg', alt: "Delete Post", class: "logo" %>
-                  <p>Deletar</p>
-                <% end %>
-              </div>
-            </div>
-          </div>
-
-          <!-- Conteúdo da Postagem -->
-          <div class="post-content">
-            <h1><%= postagem.titulo %></h1>
-            <p><%= postagem.resumo %></p>
-            <% if postagem.imagens.attached? %>
-              <div class="imagens">
-                <% postagem.imagens.limit(2).each do |imagem| %>
-                  <%= image_tag imagem, class: "img-thumbnail" %>
-                <% end %>
-              </div>
-            <% else %>
-              <p>Nenhuma imagem anexada.</p>
-            <% end %>
-          </div>
-
-          <!-- Rodapé -->
-          <div class="post-footer">
-            <div class="post-reactions">
-              <% if postagem.usuario_reagiu?(helpers.current_usuario) %>
-                <%= button_to '❌ Remover Reação', postagem_reacoes_path(postagem_id: postagem.id, tipo: 'like'), remote: true, method: :post, class: "reaction-button" %>
-              <% else %>
-                <%= button_to '👍 Reagir', postagem_reacoes_path(postagem_id: postagem.id, tipo: 'like'), remote: true, method: :post, class: "reaction-button" %>
-              <% end %>
-              <!-- <%= button_to '👍', postagem_reacoes_path(postagem_id: postagem.id, tipo: 'like'), remote: true, method: :post, class: "reaction-button" %> -->
-              <!-- <button class="reaction-button">👍 Reações</button> -->
-              <button class="comment-button" data-post-id="<%= postagem.id %>">💬 Comentar</button>
-            </div>
-            <div class="post-stats">
-              <span class="views-count"><%= postagem.total_reacoes %></span> Reações • 
-              <span class="comments-count"><%= postagem.total_comentarios %> comentários</span>
-            </div>
-          </div>
-
-          <!-- Comentários -->
-          <div class="post-comments">
-            <%= form_with(model: [postagem, Comentario.new], local: true) do |form| %>
-              <div class="form-group comment-form" data-post-id="<%= postagem.id %>" style="display: none;">
-                <%= form.text_area :conteudo, class: "form-control", placeholder: "Adicionar um comentário" %>
-                <%= helpers.inline_svg 'icons/send.svg', alt: "Submit Message", class: "logo" %>
-                <%= form.submit "Submit", :type => :image, :src => image_path("icons/send.svg") %>
-              </div>
-            <% end %>
-            <% postagem.comentarios.each do |comentario| %>
-              <div class="comment">
-                <div class="user-comment-info">
-                  <%= image_tag(comentario.usuario.imagem_or_default, :alt => "Avatar Do Usuárrio", :class => "community-icon") %>
-                  <!-- <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "Avatar de Enzo Alberix", :class => "avatar") %> -->
-                  <strong><%= comentario.nome_autor %></strong>
-                  <p class="last-activity">• Realizado há <%= time_ago_in_words(comentario.updated_at) %> •</p>
-                </div>
-                <p class="comment-content"><%= comentario.conteudo %></p>
-                <hr>
-              </div>
-            <% end %>
-          </div>
-        </div>      
+        <%= render Organisms::Post::PostComponent.new(post: postagem) %>
       <% end %>
     </div>
   </section>

@@ -3,23 +3,18 @@ class ReacoesController < ApplicationController
 
   def create
     @postagem = Postagem.find(params[:postagem_id])
-    @reacao = @postagem.reacoes.find_by(usuario: current_usuario)
+    @reacao = @postagem.reacoes.find_or_initialize_by(usuario: current_usuario)
 
-    if @reacao
-      @reacao.destroy
-      flash[:notice] = "Reação Removida"
+    if @reacao.persisted? && @reacao.tipo == params[:tipo]
+      @reacao.destroy # Remove a reação existente se for do mesmo tipo
     else
-      @reacao = @postagem.reacoes.build(tipo: params[:tipo], usuario: current_usuario)
-      if @reacao.save
-        flash[:notice] = "Reação Computada"
-        if @postagem.usuario != current_usuario
-          @postagem.enviar_notificacao("reagiu", @postagem.usuario)
-        end
-      else
-        flash[:notice] = "Erro ao adicionar reação"
-      end
+      @reacao.update(tipo: params[:tipo]) # Atualiza ou cria a reação
     end
-    redirect_to root_path
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_back(fallback_location: root_path) }
+    end
   end
 
   private
