@@ -1,4 +1,4 @@
-<div id="community-<%= community.id %>" class="item">
+<div id="community-<%= community.id %>" class="item <%= 'selected' if community == @comunidade %>">
   <%= link_to comunidade_path(community.id), class: "info" do %>
     <%= image_tag community.imagem_or_default, :alt => "Avatar da Comunidade #{community.nome}", :class => "avatar" %>
     <p><%= community.nome %></p>

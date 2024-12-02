@@ -45,8 +45,16 @@ class ComunidadesController < ApplicationController
   end
 
   def show
-    @comunidade = Comunidade.find(params[:id])
+    @comunidade = Comunidade.find_by(id: params[:id]) || current_usuario.comunidades.first
+    @comunidades_participadas  = []
+    @usuarios = []
+    @posts = []
+    if @comunidade.nil?
+      return
+    end
+    @comunidades_participadas = current_usuario.comunidades
     @posts = @comunidade.posts
+    @usuarios = @comunidade.usuarios
   end
 
   private

@@ -13,6 +13,10 @@ class Comunidade < ApplicationRecord
     avatar.attached? ? avatar : "icons/ComunidadeImagePerfilPlaceHolder.svg"
   end
 
+  def resumo
+    "#{self.descricao.truncate(500)}"
+  end
+
   def last_activity
     postagem_recente = postagens.order(updated_at: :desc).first
     if postagem_recente

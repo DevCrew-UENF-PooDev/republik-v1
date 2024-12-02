@@ -21,9 +21,9 @@
       <%= helpers.inline_svg 'icons/MessageIcon.svg', alt: "Messages", class: "icon" %>
       <span class="notification-badge">3</span>
     </a>
-    <a href="#" class="icon-link">
+    <%= link_to comunidade_path(0), class: "icon-link" do %>
       <%= helpers.inline_svg 'icons/FriendsIcon.svg', alt: "Friends", class: "icon" %>
-    </a>
+    <% end %>
   </div>
 
   <!-- Avatar do Usuário -->
@@ -33,11 +33,7 @@
       <span class="notification-badge">1</span>
     </a>
     <div id="avatar-button" class="avatar-container">
-      <% if helpers.current_usuario.avatar.attached? %>
-        <%= image_tag helpers.current_usuario.avatar, :alt => "User Avatar", :class => "avatar" %>
-      <% else %>
-        <%= image_tag("icons/PerfilImagePlaceHolder.svg", :alt => "User Avatar", :class => "avatar") %>
-      <% end %>
+      <%= image_tag helpers.current_usuario.imagem_or_default, :alt => "User Avatar", :class => "avatar" %>
     </div>
     <!-- Menu Dropdown -->
     <div id="dropdown-menu" class="dropdown-menu hidden">
